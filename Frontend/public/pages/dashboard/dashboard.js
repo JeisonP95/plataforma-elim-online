@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const token = localStorage.getItem("token");
   if (!token) {
     alert("Debes iniciar sesión");
-    window.location.href = "/Frontend/src/pages/login/login1.html";
+    window.location.href = "/pages/login/login1.html";
     return;
   }
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(err);
     alert("Sesión inválida, vuelve a iniciar sesión");
     localStorage.removeItem("token");
-    window.location.href = "/Frontend/src/pages/login/login1.html";
+    window.location.href = "/pages/login/login1.html";
     return;
   }
 

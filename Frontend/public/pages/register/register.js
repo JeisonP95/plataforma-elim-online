@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       alert("✅ Registro exitoso, redirigiendo al login...");
-      window.location.href = "/Frontend/src/pages/login/login1.html";
+      window.location.href = "/pages/login/login1.html";
     } catch (err) {
       console.error("❌ Error:", err);
       alert("⚠️ No se pudo conectar con el servidor");

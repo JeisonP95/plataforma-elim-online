@@ -282,19 +282,19 @@ function showSuccess(mode, data = {}) {
     if (mode === 'perfil') {
         successText.textContent = `¡Perfil actualizado exitosamente! Los cambios se han guardado para ${data.nombre}.`;
         successActions.innerHTML = `
-            <a href="/Frontend/src/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
-            <a href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion" class="btn-secondary">Ir a Configuración</a>
+            <a href="/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
+            <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion" class="btn-secondary">Ir a Configuración</a>
         `;
     } else if (mode === 'configuracion') {
         successText.textContent = '¡Configuración guardada exitosamente! Tus preferencias han sido actualizadas.';
         successActions.innerHTML = `
-            <a href="/Frontend/src/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
-            <a href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil" class="btn-secondary">Editar Perfil</a>
+            <a href="/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
+            <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil" class="btn-secondary">Editar Perfil</a>
         `;
     } else if (mode === 'avatar') {
         successText.textContent = '¡Foto de perfil actualizada! La nueva imagen se ha guardado correctamente.';
         successActions.innerHTML = `
-            <a href="/Frontend/src/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
+            <a href="/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
         `;
     }
     
@@ -397,9 +397,9 @@ function simulateApiCall(delay) {
 // 10. FUNCIONES DE NAVEGACIÓN
 // ========================================
 function goToPerfil() {
-    window.location.href = '/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil';
+    window.location.href = '/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil';
 }
 
 function goToConfiguracion() {
-    window.location.href = '/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion';
+    window.location.href = '/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion';
 }

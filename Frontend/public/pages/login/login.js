@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Guardar token en localStorage (para futuras peticiones)
       localStorage.setItem("token", result.token);
       // Redirigir al dashboard
-      window.location.href = "/Frontend/src/pages/dashboard/dashboard.html";
+      window.location.href = "/pages/dashboard/dashboard.html";
     } catch (err) {
       console.error("Error de conexión:", err);
       alert("⚠️ No se pudo conectar con el servidor, intenta más tarde");

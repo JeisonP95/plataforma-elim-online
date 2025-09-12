@@ -252,13 +252,13 @@ function showSuccess(mode, email = '') {
     if (mode === 'recover') {
         successText.textContent = `Se ha enviado un enlace de recuperación a ${email}. Revisa tu bandeja de entrada y sigue las instrucciones.`;
         successActions.innerHTML = `
-            <a href="/Frontend/src/pages/login/login1.html" class="btn-primary">Ir al Login</a>
+            <a href="/pages/login/login1.html" class="btn-primary">Ir al Login</a>
         `;
     } else if (mode === 'change') {
         successText.textContent = 'Tu contraseña ha sido cambiada exitosamente. Ya puedes usar tu nueva contraseña para iniciar sesión.';
         successActions.innerHTML = `
-            <a href="/Frontend/src/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
-            <a href="/Frontend/src/pages/login/login1.html" class="btn-secondary">Ir al Login</a>
+            <a href="/pages/dashboard/dashboard.html" class="btn-primary">Ir al Dashboard</a>
+            <a href="/pages/login/login1.html" class="btn-secondary">Ir al Login</a>
         `;
     }
     
@@ -361,9 +361,9 @@ function simulateApiCall(delay) {
 // 8. FUNCIONES DE NAVEGACIÓN
 // ========================================
 function goToRecover() {
-    window.location.href = '/Frontend/src/pages/password/password.html?mode=recover';
+    window.location.href = '/pages/password/password.html?mode=recover';
 }
 
 function goToChange() {
-    window.location.href = '/Frontend/src/pages/password/password.html?mode=change';
+    window.location.href = '/pages/password/password.html?mode=change';
 }

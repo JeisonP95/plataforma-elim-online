@@ -99,7 +99,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Función para cargar cursos disponibles
 async function loadAvailableCourses() {
-  const API_BASE = "http://localhost:3000"; // Definir API_BASE localmente
+  const API_BASE =
+  window.location.hostname.includes("localhost")
+    ? "http://localhost:3000" // cuando pruebas en local
+    : "https://plataforma-elim-online.onrender.com"; // cuando está en producción // Definir API_BASE localmente
   try {
     console.log("Cargando cursos desde:", `${API_BASE}/api/courses`);
     const res = await fetch(`${API_BASE}/api/courses`);

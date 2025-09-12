@@ -1,6 +1,9 @@
 // register.js
 document.addEventListener("DOMContentLoaded", () => {
-  const API_BASE = "http://localhost:3000"; // Ajusta si tu backend corre en otro host/puerto
+  const API_BASE =
+  window.location.hostname.includes("localhost")
+    ? "http://localhost:3000" // cuando pruebas en local
+    : "https://plataforma-elim-online.onrender.com"; // cuando está en producción
   console.log("✅ Página de registro cargada");
 
   const form = document.querySelector("form");

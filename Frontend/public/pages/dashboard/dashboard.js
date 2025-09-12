@@ -2,7 +2,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("✅ Dashboard cargado");
 
-  const API_BASE = "http://localhost:3000";
+  const API_BASE =
+  window.location.hostname.includes("localhost")
+    ? "http://localhost:3000" // cuando pruebas en local
+    : "https://plataforma-elim-online.onrender.com"; // cuando está en producción
   const token = localStorage.getItem("token");
   if (!token) {
     alert("Debes iniciar sesión");

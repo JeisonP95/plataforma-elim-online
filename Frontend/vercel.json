@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/login", "destination": "/pages/login/login.html" },
+    { "source": "/login", "destination": "/pages/login/login1.html" },
     { "source": "/register", "destination": "/pages/register/register.html" },
     { "source": "/password", "destination": "/pages/password/password.html" },
     { "source": "/perfil-configuracion", "destination": "/pages/perfil-configuracion/perfil-configuracion.html" },

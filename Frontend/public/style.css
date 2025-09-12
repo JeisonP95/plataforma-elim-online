@@ -23,16 +23,15 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 15px;
 }
 nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
+    gap: 1.5rem;
+    align-items: center;
 }
 nav ul li a {
     color: #fff;
@@ -60,10 +59,12 @@ nav ul li a:hover {
     cursor: pointer;
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
+    box-shadow: 0 2px 16px rgba(29, 28, 40, 0.08);
 }
 .btn-primary {
     background: #7f78ab;
     color: #fff;
+    border: 2px solid #b3b2b8;
 }
 
 .btn-primary:hover {
@@ -84,6 +85,7 @@ nav ul li a:hover {
     color: #fff;
     text-align: center;
     padding: 1rem 1rem 3rem 1rem;
+    margin-top: 1px;
 }
 .hero h2 {
     font-size: 2.2rem;
@@ -167,6 +169,7 @@ nav ul li a:hover {
     color: #fff;
     padding: 3rem 1rem;
     text-align: center;
+
 }
 .contact h2 {
     margin-bottom: 1.5rem;
@@ -177,6 +180,7 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    padding: 15px;
 }
 .contact-form input,
 .contact-form textarea {
@@ -209,4 +213,46 @@ footer a {
 footer a:hover {
     color: #a39bc2;
 }
+
+@media screen and (max-width: 768px) {
+    nav {
+        flex-direction: column; /* los elementos se apilan verticalmente */
+        align-items: center; /* opcional, para que no queden centrados */
+        justify-content: center;
+    }
+
+    nav ul {
+        flex-direction:row; /* el menú se apila */
+        align-items: center; /* opcional, para que no queden centrados */
+        justify-content: center;
+        gap: 10px; /* espacio entre links más pequeño */
+        width: 100%;
+        padding: 10px 10px;
+    }
+
+    nav ul li a {
+        width: 100%; /* que el link ocupe todo el ancho */
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .nav-buttons {
+        flex-direction: row; /* botones también apilados */
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .contact-form {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+}
+
 

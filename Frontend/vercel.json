@@ -1,18 +1,11 @@
 {
-  "builds": [
-    { "src": "frontend/index.html", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/frontend/$1" }
-  ],
   "rewrites": [
-    { "source": "/login", "destination": "/frontend/public/pages/login/login.html" },
-    { "source": "/register", "destination": "/frontend/public/pages/register/register.html" },
-    { "source": "/password", "destination": "/frontend/public/pages/password/password.html" },
-    { "source": "/perfil-configuracion", "destination": "/frontend/public/pages/perfil-configuracion/perfil-configuracion.html" },
-    { "source": "/terminoscondiciones", "destination": "/frontend/public/pages/terminoscondiciones/terminos.html" },
-    { "source": "/cursos", "destination": "/frontend/public/pages/cursos/cursos-detalle.html" },
-    { "source": "/dashboard", "destination": "/frontend/public/pages/dashboard/dashboard.html" }
+    { "source": "/login", "destination": "/public/pages/login/login.html" },
+    { "source": "/register", "destination": "/public/pages/register/register.html" },
+    { "source": "/password", "destination": "/public/pages/password/password.html" },
+    { "source": "/perfil-configuracion", "destination": "/public/pages/perfil-configuracion/perfil-configuracion.html" },
+    { "source": "/terminoscondiciones", "destination": "/public/pages/terminoscondiciones/terminos.html" },
+    { "source": "/cursos", "destination": "/public/pages/cursos/cursos-detalle.html" },
+    { "source": "/dashboard", "destination": "/public/pages/dashboard/dashboard.html" }
   ]
 }
-

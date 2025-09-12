@@ -1,0 +1,409 @@
+.cursodetalle-hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f6f6fa 0%, #e0def7 100%);
+  border-radius: 12px;
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.cursodetalle-hero h1 {
+  color: #6c63a4;
+  margin-bottom: 0;
+  font-size: 2.2rem;
+}
+
+.cursodetalle-hero p {
+  color: #333;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.curso-detalles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.curso-imagenPortada {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(108, 99, 164, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.curso-imagenPortada:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(108, 99, 164, 0.2);
+}
+
+.curso-imagenPortada img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.detalles-numericos {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.detalle-item {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 12px rgba(108, 99, 164, 0.1);
+  min-width: 110px;
+  text-align: center;
+  flex: 1;
+  max-width: 140px;
+  transition: transform 0.2s ease;
+}
+
+.detalle-item:hover {
+  transform: translateY(-3px);
+}
+
+.detalle-item h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #6c63a4;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.detalle-item p {
+  margin: 0.3rem 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+.curso-contenido {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(108, 99, 164, 0.08);
+  margin: 2rem auto;
+  max-width: 1100px;
+  overflow: hidden;
+}
+
+.contenido-navegacion {
+  background: #f6f6fa;
+  padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.contenido-navegacion ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.contenido-navegacion li {
+  text-align: center;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.8rem 1.5rem;
+  color: #6c63a4;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background: #6c63a4;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.contenido-seccion {
+  padding: 2rem;
+  scroll-margin-top: 80px;
+}
+
+.contenido-seccion h2 {
+  color: #6c63a4;
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f6f6fa;
+}
+
+.contenido-seccion h2:first-child {
+  margin-top: 0;
+}
+
+.contenido-seccion ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.contenido-seccion li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f6f6fa;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.contenido-seccion li:before {
+  content: "•";
+  color: #6c63a4;
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.instructor-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.instructor-imagen {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #6c63a4;
+  flex-shrink: 0;
+}
+
+.instructor-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.instructor-datos h2 {
+  color: #6c63a4;
+  margin: 0 0 0.5rem 0;
+}
+
+.instructor-datos h3 {
+  color: #a39bc2;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.reseña {
+  background: #f6f6fa;
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid #6c63a4;
+}
+
+.reseña-texto {
+  font-style: italic;
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.reseña-autor {
+  font-weight: 600;
+  color: #6c63a4;
+  text-align: right;
+  margin: 0;
+}
+
+.contenido-seccion:target {
+  background-color: rgba(108, 99, 164, 0.03);
+  border-radius: 0 0 8px 8px;
+}
+
+.curso-compra {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(108, 99, 164, 0.15);
+  margin: 2rem auto;
+  max-width: 1100px;
+  padding: 2rem;
+}
+
+.compra-container {
+  text-align: center;
+}
+
+.compra-container h2 {
+  color: #6c63a4;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.compra-detalles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: inline-block;
+  text-align: left;
+}
+
+.compra-detalles li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f0f0f5;
+  color: #333;
+  font-size: 1rem;
+}
+
+.compra-detalles li:last-child {
+  border-bottom: none;
+}
+
+.compra-detalles strong {
+  color: #6c63a4;
+  min-width: 120px;
+  display: inline-block;
+}
+
+.btn-comprar {
+  display: inline-block;
+  background: #6c63a4;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 1rem 0 1.5rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(108, 99, 164, 0.3);
+}
+
+.btn-comprar:hover {
+  background: #564c94;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(108, 99, 164, 0.4);
+}
+
+.compra-info {
+  background: #f9f9fc;
+  padding: 1.2rem;
+  border-radius: 8px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  border-left: 4px solid #6c63a4;
+}
+
+/*MEDIA QUERIES RESPONSIVE*/
+@media (max-width: 768px) {
+  .cursodetalle-hero {
+    padding: 1.5rem 0.8rem;
+    margin: 1rem;
+  }
+
+  .cursodetalle-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .curso-imagenPortada {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .detalles-numericos {
+    gap: 0.8rem;
+  }
+
+  .detalle-item {
+    padding: 0.8rem 0.6rem;
+    min-width: 90px;
+    max-width: 110px;
+  }
+
+  .detalle-item h3 {
+    font-size: 1rem;
+  }
+
+  .detalle-item p {
+    font-size: 0.75rem;
+  }
+
+  .contenido-navegacion ul {
+    flex-direction: column;
+  }
+
+  .instructor-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contenido-seccion {
+    padding: 1rem;
+    scroll-margin-top: 120px;
+  }
+
+  .instructor-imagen {
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    padding: 0.6rem 1rem;
+  }
+
+  .curso-compra {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .compra-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .compra-detalles {
+    width: 100%;
+  }
+
+  .compra-detalles li {
+    font-size: 0.9rem;
+  }
+
+  .compra-detalles strong {
+    min-width: 100px;
+  }
+
+  .btn-comprar {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+
+  .compra-info {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalles-numericos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detalle-item {
+    max-width: 200px;
+    width: 100%;
+  }
+}

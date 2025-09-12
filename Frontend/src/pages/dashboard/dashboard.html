@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Frontend/src/icons/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="/Frontend/style.css">
+    <link rel="stylesheet" href="/Frontend/src/pages/dashboard/dashboard.css">
+    <title>Mi Dashboard - Elim Online</title>
+    <meta name="description" content="Panel de usuario de Elim Online - Gestiona tus cursos y perfil">
+    <meta name="robots" content="index, follow">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="/Frontend/src/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="90"
+                    height="90" loading="lazy">
+            </div>
+            <ul>
+                <li><a href="#mis-cursos">Mis Cursos</a></li>
+                <li><a href="#cursos-disponibles">Explorar Cursos</a></li>
+                <li><a href="#progreso">Mi Progreso</a></li>
+                <li><a href="#perfil">Mi Perfil</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <div class="user-menu">
+                    <span class="user-welcome user-name">¡Hola, Usuario!</span>
+                    <div class="user-dropdown">
+                        <button class="dropdown-btn btn-secondary">⚙️</button>
+                        <div class="dropdown-content">
+                            <a href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
+                            <a href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion">Configuración</a>
+                            <a href="/Frontend/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <!-- Sección de Bienvenida -->
+        <section class="hero dashboard-hero">
+            <div class="welcome-content">
+                <h2 class="welcome-title">¡Bienvenido de nuevo!</h2>
+                <p class="welcome-subtitle">Continúa tu camino hacia el bienestar.</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3 class="courses-count">0</h3>
+                    <p>Cursos Inscritos</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="progress-percent">0%</h3>
+                    <p>Progreso Promedio</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="certificates-count">0</h3>
+                    <p>Certificados</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mis Cursos Inscritos -->
+        <section id="mis-cursos" class="dashboard-section">
+            <h2>Mis Cursos</h2>
+            <div class="cursos-lista" id="my-courses-list">
+                <div class="no-courses-message">
+                    <h3>🎯 ¡Aún no tienes cursos inscritos!</h3>
+                    <p>Explora nuestros cursos disponibles y comienza tu viaje de bienestar.</p>
+                    <a href="#cursos-disponibles" class="btn-primary">Ver Cursos Disponibles</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cursos Disponibles -->
+        <section id="cursos-disponibles" class="dashboard-section">
+            <h2>Explora Nuevos Cursos</h2>
+            <div class="cursos-lista" id="available-courses-list">
+                <div class="loading-courses">
+                    <p>🔄 Cargando cursos disponibles...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mi Perfil -->
+        <section id="perfil" class="about">
+            <h2>Mi Perfil</h2>
+            <div class="perfil-container">
+                <div class="perfil-card">
+                    <div class="perfil-avatar">
+                        <img src="https://via.placeholder.com/100x100/6c63a4/FFFFFF?text=M" alt="Avatar de María"
+                            width="100" height="100">
+                    </div>
+                    <div class="perfil-info">
+                        <h3 class="profile-name">Usuario</h3>
+                        <p class="profile-email">📧 email@ejemplo.com</p>
+                        <p class="profile-date">📅 Miembro desde: 2025</p>
+                    </div>
+
+                    <div class="perfil-stats">
+                        <div class="stat-item">
+                            <strong>Cursos Completados:</strong> <span class="completed-courses">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>Tiempo Total:</strong> <span class="total-time">0 horas</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>Racha de Estudio:</strong> <span class="study-streak">0 días</span>
+                        </div>
+                    </div>
+
+                    <div class="perfil-actions">
+                        <a href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil" class="btn-primary">Editar Perfil</a>
+                        <a href="/Frontend/src/pages/password/password.html?mode=change" class="btn-secondary">Cambiar Contraseña</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progreso General -->
+        <section id="progreso" class="contact">
+            <h2>Mi Progreso</h2>
+            <div class="progreso-container">
+                <div class="progreso-card">
+                    <h3>Actividad Semanal</h3>
+                    <div class="actividad-semanal">
+                        <div class="dia pendiente">L</div>
+                        <div class="dia pendiente">M</div>
+                        <div class="dia pendiente">X</div>
+                        <div class="dia pendiente">J</div>
+                        <div class="dia pendiente">V</div>
+                        <div class="dia pendiente">S</div>
+                        <div class="dia pendiente">D</div>
+                    </div>
+                    <p class="weekly-progress">0 de 7 días completados esta semana</p>
+                </div>
+
+                <div class="progreso-card">
+                    <h3>Próximas Metas</h3>
+                    <ul class="metas-lista">
+                        <li>🎯 Inscribirse en tu primer curso</li>
+                        <li>📚 Completar tu primera lección</li>
+                        <li>⭐ Mantener una racha de estudio</li>
+                        <li>🏆 Obtener tu primer certificado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="/Frontend/src/pages/dashboard/dashboard.js"></script>
+</body>
+<footer>
+        <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+        <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+        <p>
+            Síguenos en
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://instagram.com" target="_blank">Instagram</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+        </p>
+        <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+    </footer>
+</html>

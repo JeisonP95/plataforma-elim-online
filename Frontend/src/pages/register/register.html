@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elim · Autenticación</title>
+    <!--Meta tags para el SEO de la pagina-->
+    <meta name="description"
+        content="Accede o crea tu cuenta en Elim Online, la plataforma de cursos de bienestar integral. Inicia sesión para continuar tu formación personal.">
+    <meta name="keywords"
+        content="Iniciar sección, Registarme, usuario, bienestar online, cursos de bienestar, formación personal, educación en línea, salud mental, desarrollo espiritual,crecimiento emocional, bienestar integral, e-learning, Elim Online">
+    <meta name="author" content="Elim Online">
+    <meta name="robots" content="index, follow">
+    <!--Flavicon del sitio-->
+    <link rel="shortcut icon" href="/Frontend/src/icons/icono.png" type="image/png">
+    <link rel="stylesheet" href="/Frontend/style.css">
+    <link rel="stylesheet" href="/Frontend/src/pages/register/register.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <figure>
+                <img src="/Frontend/src/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="80"
+                    height="80">
+                <figcaption style="display:none;">Logo de Elim Online</figcaption>
+            </figure>
+            <a href="/Frontend/index.html" class="btn-secondary">Volver al Inicio</a>
+        </nav>
+    </header>
+    <!--Navegador-->
+    <main>
+        <!--Formulario de registro sección-->
+        <section class="about">
+            <div class="register-section">
+                <h1>Elim Online</h1>
+                <p>Ingresa tus datos para comenzar tu viaje de bienestar.</p>
+                <form action="/api/register" method="post">
+                    <!--Datos personales-->
+                    <fieldset>
+                        <legend>Información personal</legend>
+                        <label for="registerfirstName">Nombre *</label>
+                        <input type="text" id="registerfirstName" name="firstName" required>
+                        <label for="registerlastName">Apellido *</label>
+                        <input type="text" id="registerlastName" name="lastName" required>
+                        <label for="registeremail">Correo Electrónico *</label>
+                        <input type="email" id="registeremail" name="email" required>
+                        <label for="registerphone">Teléfono (opcional)</label>
+                        <input type="tel" id="registerphone" name="phone">
+                    </fieldset>
+                    <!--Datos de acceso-->
+                    <fieldset>
+                        <legend>Seguridad de la cuenta</legend>
+                        <label for="registerpassword">Contraseña *</label>
+                        <input type="password" id="registerpassword" name="password" required>
+                        <label for="registerconfirmPassword">Confirmar contraseña *</label>
+                        <input type="password" id="registerconfirmPassword" name="confirmPassword" required>
+                    </fieldset>
+                    <!--Política de privacidad-->
+                    <p>
+                        Al crear una cuenta, <strong>aceptas</strong> los <a href="/terms.html" target="_blank">Términos
+                            de
+                            uso</a> y <a href="/privacy.html" target="_blank">política de privacidad</a> y entiendes que
+                        Elim Online puede enviarte correos electrónicos de marketing. Puedes darte de baja de estas
+                        comunicaciones cuando quieras.
+                    </p>
+                    <!--Boton enviar formulario registrarse-->
+                    <button type="submit">Crear mi Cuenta</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="/Frontend/src/pages/register/register.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+    <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+    <p>
+        Síguenos en
+        <a href="https://facebook.com" target="_blank">Facebook</a> |
+        <a href="https://instagram.com" target="_blank">Instagram</a> |
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+    </p>
+    <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+</footer>
+
+</html>

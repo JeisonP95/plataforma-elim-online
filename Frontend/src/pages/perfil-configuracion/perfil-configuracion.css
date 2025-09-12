@@ -1,0 +1,402 @@
+/* ========================================
+   ESTILOS PARA PERFIL Y CONFIGURACIÓN
+   ======================================== */
+
+/* ========================================
+   1. CONFIGURACIÓN GENERAL
+   ======================================== */
+/* Los estilos del body se heredan del CSS principal (style.css) */
+/* No redefinir body para mantener consistencia */
+
+/* ========================================
+   2. HEADER Y NAVEGACIÓN
+   ======================================== */
+/* Los estilos del header y nav se heredan del CSS principal (style.css) */
+/* No agregar estilos adicionales aquí para mantener consistencia */
+
+/* ========================================
+   3. SECCIÓN PRINCIPAL (igual que login-section)
+   ======================================== */
+.perfil-configuracion-section {
+    background: linear-gradient(90deg, #6c63a4 60%, #483d8b 100%);
+    color: #fff;
+    padding: 3rem 1rem;
+    max-width: 600px;
+    margin: 3rem auto 2rem auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(108,99,164,0.20);
+    text-align: center;
+}
+
+.perfil-configuracion-section h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-configuracion-section > p {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* ========================================
+   4. FORMULARIOS (igual que login-section form)
+   ======================================== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.form-header h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.contact-form label {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form select {
+    width: 90%;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    background: #f6f6fa;
+    color: #333;
+}
+
+.contact-form input:focus,
+.contact-form select:focus {
+    outline: none;
+    background: #fff;
+}
+
+.contact-form input:invalid {
+    background: #ffe6e6;
+    border: 2px solid #e74c3c;
+}
+
+/* ========================================
+   5. SECCIÓN DE AVATAR
+   ======================================== */
+.avatar-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.avatar-container {
+    text-align: center;
+}
+
+.avatar-container img {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-container button {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.avatar-container button:hover {
+    background: #fff;
+    color: #6c63a4;
+}
+
+/* ========================================
+   6. SECCIONES DE CONFIGURACIÓN
+   ======================================== */
+.config-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.config-section h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.config-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.config-item:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   7. SWITCH TOGGLE
+   ======================================== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #6c63a4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.config-label {
+    flex: 1;
+    text-align: left;
+}
+
+.config-label strong {
+    color: #fff;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.config-label p {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* ========================================
+   8. BOTONES (igual que login-section button)
+   ======================================== */
+.btn-primary {
+    background: #fff;
+    color: #6c63a4;
+    border: none;
+    border-radius: 20px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+}
+
+.btn-primary:hover {
+    background: #e0def7;
+    color: #483d8b;
+}
+
+/* Los estilos de .btn-secondary se heredan del CSS principal (style.css) */
+
+/* ========================================
+   9. MENSAJES Y ESTADOS
+   ======================================== */
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-footer p {
+    color: #fff;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.form-footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+}
+
+.form-footer a:hover {
+    opacity: 0.8;
+}
+
+.success-message {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.success-message h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.success-message p {
+    color: #fff;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.success-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ========================================
+   10. RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .perfil-configuracion-section {
+        margin: 1rem;
+        padding: 1.5rem;
+        max-width: none;
+    }
+    
+    .perfil-configuracion-section h1 {
+        font-size: 1.5rem;
+    }
+    
+    .config-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .config-label {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .success-actions .btn-primary,
+    .success-actions .btn-secondary {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form input,
+    .contact-form select {
+        width: 95%;
+    }
+    
+    .btn-primary {
+        width: 95%;
+    }
+}
+
+/* ========================================
+   11. ANIMACIONES
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-form,
+.success-message {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ========================================
+   12. FOOTER
+   ======================================== */
+footer {
+    background: #6c63a4;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+    margin: 0 0.2rem;
+}
+
+footer a:hover {
+    color: #a39bc2;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil y Configuración - Elim Online</title>
+    <meta name="description" content="Gestiona tu perfil y configuración en Elim Online">
+    <meta name="keywords" content="perfil, configuración, usuario, Elim Online">
+    <meta name="author" content="Elim Online">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="shortcut icon" href="/Frontend/src/icons/icono.png" type="image/x-icon">
+    <link rel="stylesheet" href="/Frontend/style.css">
+    <link rel="stylesheet" href="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <figure>
+                <img src="/Frontend/src/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="80"
+                    height="80">
+                <figcaption style="display:none;">Logo de Elim Online</figcaption>
+            </figure>
+            <a href="/Frontend/src/pages/dashboard/dashboard.html" class="btn-secondary">Volver al Dashboard</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about">
+            <div class="perfil-configuracion-section">
+                <!-- Título dinámico -->
+                <h1 id="pageTitle">Perfil y Configuración</h1>
+                <p id="pageDescription">Gestiona tu información personal y preferencias</p>
+
+                <!-- Formulario de Editar Perfil -->
+                <form id="editarPerfilForm" class="contact-form" style="display: none;">
+                    <div class="form-header">
+                        <h2>👤 Editar Perfil</h2>
+                        <p>Actualiza tu información personal</p>
+                    </div>
+
+                    <div class="avatar-section">
+                        <div class="avatar-container">
+                            <img src="/Frontend/src/images/fotoperfil-profesor.jpg" alt="Avatar actual" id="currentAvatar" width="100" height="100">
+                            <button type="button" class="btn-secondary" id="changeAvatarBtn">Cambiar Foto</button>
+                        </div>
+                    </div>
+
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo" value="María González">
+
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com" value="maria.gonzalez@email.com">
+
+                    <label for="telefono">Teléfono (Opcional)</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+34 123 456 789">
+
+                    <label for="fechaNacimiento">Fecha de Nacimiento (Opcional)</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+
+                    <button type="submit" class="btn-primary">Guardar Cambios</button>
+                    
+                    <div class="form-footer">
+                        <p>¿Quieres cambiar tu contraseña? <a href="/Frontend/src/pages/password/password.html?mode=change">Cambiar Contraseña</a></p>
+                    </div>
+                </form>
+
+                <!-- Formulario de Configuración -->
+                <form id="configuracionForm" class="contact-form" style="display: none;">
+                    <div class="form-header">
+                        <h2>⚙️ Configuración</h2>
+                        <p>Personaliza tu experiencia en la plataforma</p>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>🔔 Notificaciones</h3>
+                        <div class="config-item">
+                            <label class="switch">
+                                <input type="checkbox" id="notificacionesEmail" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="config-label">
+                                <strong>Notificaciones por Email</strong>
+                                <p>Recibe actualizaciones sobre tus cursos</p>
+                            </div>
+                        </div>
+
+                        <div class="config-item">
+                            <label class="switch">
+                                <input type="checkbox" id="recordatorios" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="config-label">
+                                <strong>Recordatorios de Estudio</strong>
+                                <p>Te recordamos continuar con tus cursos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>🎨 Apariencia</h3>
+                        <div class="config-item">
+                            <label for="tema">Tema de la Plataforma</label>
+                            <select id="tema" name="tema">
+                                <option value="claro">Claro</option>
+                                <option value="oscuro">Oscuro</option>
+                                <option value="auto">Automático</option>
+                            </select>
+                        </div>
+
+                        <div class="config-item">
+                            <label for="idioma">Idioma</label>
+                            <select id="idioma" name="idioma">
+                                <option value="es">Español</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="config-section">
+                        <h3>🔒 Privacidad</h3>
+                        <div class="config-item">
+                            <label class="switch">
+                                <input type="checkbox" id="perfilPublico">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="config-label">
+                                <strong>Perfil Público</strong>
+                                <p>Permite que otros usuarios vean tu perfil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Guardar Configuración</button>
+                </form>
+
+                <!-- Mensaje de éxito -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <h2>✅ ¡Éxito!</h2>
+                    <p id="successText"></p>
+                    <div class="success-actions">
+                        <!-- Los botones se generan dinámicamente según el modo -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+        <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+        <p>
+            Síguenos en
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://instagram.com" target="_blank">Instagram</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+        </p>
+        <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+    </footer>
+
+    <script src="/Frontend/src/pages/perfil-configuracion/perfil-configuracion.js"></script>
+</body>
+
+</html>

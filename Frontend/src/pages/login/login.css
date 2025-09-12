@@ -1,0 +1,48 @@
+/* ===== ESTILOS DE LOGIN ===== */
+.login-section {
+    background: linear-gradient(90deg, #6c63a4 60%, #483d8b 100%);
+    color: #fff;
+    padding: 3rem 1rem;
+    max-width: 500px;
+    margin: 3rem auto 2rem auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(108,99,164,0.20);
+    text-align: center;
+}
+
+.login-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 2rem 1rem;
+    border-radius: 12px;
+}
+
+.login-section input {
+    width: 90%;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    background: #f6f6fa;
+    color: #333;
+}
+
+.login-section button[type="submit"] {
+    background: #fff;
+    color: #6c63a4;
+    border: none;
+    border-radius: 20px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.login-section button[type="submit"]:hover {
+    background: #e0def7;
+    color: #483d8b;
+}

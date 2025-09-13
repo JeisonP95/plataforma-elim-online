@@ -230,6 +230,7 @@ footer a:hover {
         flex-direction: column; /* los elementos se apilan verticalmente */
         align-items: center; /* opcional, para que no queden centrados */
         justify-content: center;
+        justify-content: space-between;
     }
 
     nav ul {

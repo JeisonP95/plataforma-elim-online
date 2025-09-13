@@ -58,19 +58,37 @@ async function loadAvailableCourses() {
 
 // Función para redirigir a la página de detalle del curso
 function enrollCourse(courseId) {
-  // Mapeo de cursos a sus páginas específicas
-  const coursePages = {
+  console.log("🎯 Redirigiendo a curso:", courseId);
+  
+  // Mapeo de títulos de cursos a sus páginas específicas
+  const courseTitleMapping = {
+    'Gestión del Estrés para Adultos': '/pages/curso-adultos/curso-adultos.html',
+    'Conexión con la Naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
+    'Mindfulness para Niños': '/pages/curso-ninos/curso-ninos.html',
+    'Yoga Familiar': '/pages/curso-yoga/curso-yoga.html'
+  };
+  
+  // Mapeo de IDs de cursos a sus páginas específicas (fallback)
+  const courseIdMapping = {
     'curso-adultos': '/pages/curso-adultos/curso-adultos.html',
     'curso-naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
     'curso-ninos': '/pages/curso-ninos/curso-ninos.html',
     'curso-yoga': '/pages/curso-yoga/curso-yoga.html'
   };
   
-  // Si el courseId coincide con una página específica, usar esa página
-  if (coursePages[courseId]) {
-    window.location.href = coursePages[courseId];
+  // Buscar por título primero (más confiable)
+  const courseTitle = document.querySelector(`button[onclick*="${courseId}"]`)?.closest('.curso')?.querySelector('h3')?.textContent;
+  console.log("📝 Título del curso encontrado:", courseTitle);
+  
+  if (courseTitle && courseTitleMapping[courseTitle]) {
+    console.log("✅ Redirigiendo por título a:", courseTitleMapping[courseTitle]);
+    window.location.href = courseTitleMapping[courseTitle];
+  } else if (courseIdMapping[courseId]) {
+    console.log("✅ Redirigiendo por ID a:", courseIdMapping[courseId]);
+    window.location.href = courseIdMapping[courseId];
   } else {
     // Si no hay página específica, usar la página genérica con el ID
+    console.log("⚠️ Usando página genérica para:", courseId);
     window.location.href = `/pages/cursos/curso-detalle.html?id=${courseId}`;
   }
 }

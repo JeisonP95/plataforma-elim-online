@@ -1,8 +1,4 @@
-// Esperar a que todo el HTML cargue
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Página cargada y lista");
-
-  // Función para cargar cursos disponibles
+// Función para cargar cursos disponibles
 async function loadAvailableCourses() {
   const API_BASE =
   window.location.hostname.includes("localhost")
@@ -65,6 +61,13 @@ function enrollCourse(courseId) {
   // Redirigir a la página de detalle del curso con el ID como parámetro
   window.location.href = `/pages/cursos/curso-detalle.html?id=${courseId}`;
 }
+
+// Esperar a que todo el HTML cargue
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Página cargada y lista");
+
+  // Cargar cursos disponibles al cargar la página
+  loadAvailableCourses();
 
   // Formulario de contacto
   const form = document.querySelector(".contact-form");

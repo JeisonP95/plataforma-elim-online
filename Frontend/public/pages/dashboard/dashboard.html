@@ -13,26 +13,23 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-buttons">
-            <div class="user-menu">
-                <span class="user-welcome user-name">¡Hola, Usuario!</span>
-                <div class="logo">
-                    <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="90" height="90"
-                        loading="lazy">
-                </div>
-                <div class="user-dropdown">
-                    <button class="dropdown-btn btn-secondary">≡</button>
-                    <div class="dropdown-content">
-                        <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
-                        <a
-                            href="/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion">Configuración</a>
-                        <a href="/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
-                    </div>
+    <header>
+        <nav>
+            <span class="user-welcome user-name">¡Hola, Usuario!</span>
+            <div class="logo">
+                <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="90" height="90"
+                    loading="lazy">
+            </div>
+            <div class="user-dropdown">
+                <button class="dropdown-btn btn-secondary">≡</button>
+                <div class="dropdown-content">
+                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
+                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion">Configuración</a>
+                    <a href="/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     <main class="dashboard">
         <!-- Sección de Bienvenida -->
         <section class="hero dashboard-hero">

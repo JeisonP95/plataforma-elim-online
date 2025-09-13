@@ -97,6 +97,58 @@ nav ul li a:hover {
 }
 
 /* Cursos */
+#cursos {
+    background: #f6f6fa;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+#cursos h2 {
+    color: #6c63a4;
+    margin-bottom: 0.5rem;
+}
+.cursos-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.curso {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(108,99,164,0.08);
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.curso:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 6px 24px rgba(108,99,164,0.15);
+}
+.curso img {
+    margin-bottom: 1rem;
+}
+.curso h3 {
+    color: #6c63a4;
+    margin-bottom: 0.5rem;
+}
+.curso ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    gap: 1.5rem;
+    color: #483d8b;
+    font-weight: 500;
+}
+.curso button {
+    margin-top: auto;
+}
+
 .dashboard-section {
     background: #f6f6fa;
     padding: 3rem 1rem;

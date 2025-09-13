@@ -87,9 +87,9 @@ function enrollCourse(courseId) {
     console.log("✅ Redirigiendo por ID a:", courseIdMapping[courseId]);
     window.location.href = courseIdMapping[courseId];
   } else {
-    // Si no hay página específica, usar la página genérica con el ID
-    console.log("⚠️ Usando página genérica para:", courseId);
-    window.location.href = `/pages/cursos/curso-detalle.html?id=${courseId}`;
+    // Si no hay página específica, mostrar mensaje de error
+    console.log("❌ No se encontró página para el curso:", courseId);
+    alert("Lo sentimos, este curso no está disponible en este momento.");
   }
 }
 

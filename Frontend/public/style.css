@@ -27,6 +27,7 @@ nav {
     margin: 0 auto;
     padding: 15px 30px;
 }
+
 nav ul {
     list-style: none;
     display: flex;
@@ -48,6 +49,12 @@ nav ul li a:hover {
 .nav-buttons {
     display: flex;
     gap: 1rem;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /* Botones */
@@ -247,12 +254,6 @@ footer a:hover {
         width: 100%; /* que el link ocupe todo el ancho */
         text-align: center;
         padding: 0.5rem 0;
-    }
-
-    .nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
     }
 
     .nav-buttons {

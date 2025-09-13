@@ -20,6 +20,8 @@ header h1 {
     letter-spacing: 2px;
 }
 nav {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     max-width: 100%;
     margin: 0 auto;
@@ -235,7 +237,6 @@ footer a:hover {
         flex-direction: column; /* los elementos se apilan verticalmente */
         align-items: center; /* opcional, para que no queden centrados */
         justify-content: center;
-        flex-direction:column-reverse;
     }
 
     nav ul {

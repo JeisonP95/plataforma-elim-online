@@ -21,6 +21,7 @@ header h1 {
 }
 nav {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
@@ -53,9 +54,9 @@ nav ul li a:hover {
 
 .nav {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
 }
 
 /* Botones */
@@ -270,6 +271,11 @@ footer a:hover {
     .contact-form {
         flex-direction: column;
         padding: 20px;
+    }
+
+    .nav {
+        flex-direction: row;
+        padding: 0 10px;
     }
 
 }

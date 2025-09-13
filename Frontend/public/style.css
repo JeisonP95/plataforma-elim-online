@@ -25,7 +25,7 @@ nav {
     align-items: center;
     max-width: 100%;
     margin: 0 auto;
-    padding: 30px 15px;
+    padding: 15px 30px;
 }
 nav ul {
     list-style: none;
@@ -231,6 +231,7 @@ footer a:hover {
         align-items: center; /* opcional, para que no queden centrados */
         justify-content: center;
         justify-content: space-between;
+        flex-direction:row-reverse
     }
 
     nav ul {
@@ -246,6 +247,12 @@ footer a:hover {
         width: 100%; /* que el link ocupe todo el ancho */
         text-align: center;
         padding: 0.5rem 0;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .nav-buttons {

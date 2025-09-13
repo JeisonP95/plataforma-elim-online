@@ -6,6 +6,7 @@
     { "source": "/perfil-configuracion", "destination": "/pages/perfil-configuracion/perfil-configuracion.html" },
     { "source": "/terminoscondiciones", "destination": "/pages/terminoscondiciones/terminos.html" },
     { "source": "/cursos", "destination": "/pages/cursos/curso-detalle.html" },
+    { "source": "/curso-ninos", "destination": "/pages/curso-ninos/curso-ninos.html" }, 
     { "source": "/dashboard", "destination": "/pages/dashboard/dashboard.html" }
   ]
 }

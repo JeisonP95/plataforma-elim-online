@@ -58,8 +58,21 @@ async function loadAvailableCourses() {
 
 // Función para redirigir a la página de detalle del curso
 function enrollCourse(courseId) {
-  // Redirigir a la página de detalle del curso con el ID como parámetro
-  window.location.href = `/pages/cursos/curso-detalle.html?id=${courseId}`;
+  // Mapeo de cursos a sus páginas específicas
+  const coursePages = {
+    'curso-adultos': '/pages/curso-adultos/curso-adultos.html',
+    'curso-naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
+    'curso-ninos': '/pages/curso-ninos/curso-ninos.html',
+    'curso-yoga': '/pages/curso-yoga/curso-yoga.html'
+  };
+  
+  // Si el courseId coincide con una página específica, usar esa página
+  if (coursePages[courseId]) {
+    window.location.href = coursePages[courseId];
+  } else {
+    // Si no hay página específica, usar la página genérica con el ID
+    window.location.href = `/pages/cursos/curso-detalle.html?id=${courseId}`;
+  }
 }
 
 // Esperar a que todo el HTML cargue

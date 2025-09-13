@@ -21,12 +21,14 @@ header h1 {
 }
 nav {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
     margin: 0 auto;
-    padding: 15px;
+    padding: 15px 30px;
 }
+
 nav ul {
     list-style: none;
     display: flex;
@@ -48,6 +50,13 @@ nav ul li a:hover {
 .nav-buttons {
     display: flex;
     gap: 1rem;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
 }
 
 /* Botones */
@@ -147,6 +156,17 @@ nav ul li a:hover {
 }
 .curso button {
     margin-top: auto;
+}
+
+.dashboard-section {
+    background: #f6f6fa;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.dashboard-section h2 {
+    color: #6c63a4;
+    margin-bottom: 2rem;
 }
 
 /* About */
@@ -251,6 +271,12 @@ footer a:hover {
     .contact-form {
         flex-direction: column;
         padding: 20px;
+    }
+
+    .nav {
+        flex-direction: row;
+        padding: 0 10px;
+        align-items: center;
     }
 
 }

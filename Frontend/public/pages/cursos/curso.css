@@ -307,6 +307,14 @@ nav ul li a:hover {
   margin: 0;
 }
 
+.contenido-seccion {
+  display: none;
+}
+
+.contenido-seccion.active {
+  display: block;
+}
+
 .contenido-seccion:target {
   background-color: rgba(108, 99, 164, 0.03);
   border-radius: 0 0 8px 8px;

@@ -14,33 +14,22 @@
 
 <body>
     <header>
-        <nav>
+        <div class="nav">
+            <span class="user-welcome user-name">¡Hola, Usuario!</span>
             <div class="logo">
-                <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="90"
-                    height="90" loading="lazy">
+                <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="90" height="90"
+                    loading="lazy">
             </div>
-            <ul>
-                <li><a href="#mis-cursos">Mis Cursos</a></li>
-                <li><a href="#cursos-disponibles">Explorar Cursos</a></li>
-                <li><a href="#progreso">Mi Progreso</a></li>
-                <li><a href="#perfil">Mi Perfil</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <div class="user-menu">
-                    <span class="user-welcome user-name">¡Hola, Usuario!</span>
-                    <div class="user-dropdown">
-                        <button class="dropdown-btn btn-secondary">⚙️</button>
-                        <div class="dropdown-content">
-                            <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
-                            <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion">Configuración</a>
-                            <a href="/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
-                        </div>
-                    </div>
+            <div class="user-dropdown">
+                <button class="dropdown-btn btn-secondary">≡</button>
+                <div class="dropdown-content">
+                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
+                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=configuracion">Configuración</a>
+                    <a href="/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-
     <main class="dashboard">
         <!-- Sección de Bienvenida -->
         <section class="hero dashboard-hero">
@@ -114,7 +103,8 @@
                     </div>
 
                     <div class="perfil-actions">
-                        <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil" class="btn-primary">Editar Perfil</a>
+                        <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil"
+                            class="btn-primary">Editar Perfil</a>
                         <a href="/pages/password/password.html?mode=change" class="btn-secondary">Cambiar Contraseña</a>
                     </div>
                 </div>
@@ -154,14 +144,15 @@
     <script src="/pages/dashboard/dashboard.js"></script>
 </body>
 <footer>
-        <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
-        <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
-        <p>
-            Síguenos en
-            <a href="https://facebook.com" target="_blank">Facebook</a> |
-            <a href="https://instagram.com" target="_blank">Instagram</a> |
-            <a href="https://twitter.com" target="_blank">Twitter</a>
-        </p>
-        <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
-    </footer>
+    <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+    <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+    <p>
+        Síguenos en
+        <a href="https://facebook.com" target="_blank">Facebook</a> |
+        <a href="https://instagram.com" target="_blank">Instagram</a> |
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+    </p>
+    <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+</footer>
+
 </html>

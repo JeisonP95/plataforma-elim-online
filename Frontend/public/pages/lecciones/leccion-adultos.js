@@ -11,7 +11,10 @@ let player;
 let videoTerminado = false;
 
 // Inicialización cuando se carga el DOM
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Cargar datos del usuario logueado
+    await cargarDatosUsuario();
+    
     inicializarTareas();
     configurarEventListeners();
     cargarProgresoLocal();
@@ -24,6 +27,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 3000);
 });
+
+// Función para cargar datos del usuario logueado
+async function cargarDatosUsuario() {
+    const API_BASE = window.location.hostname.includes("localhost")
+        ? "http://localhost:3000"
+        : "https://plataforma-elim-online.onrender.com";
+    
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.warn("No hay token de autenticación");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/api/me`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("No autorizado");
+        }
+
+        const { user } = await response.json();
+        
+        // Actualizar nombre del estudiante en la página
+        const nombreEstudiante = document.getElementById('nombre-estudiante');
+        if (nombreEstudiante && user) {
+            nombreEstudiante.textContent = `${user.firstName} ${user.lastName}`;
+        }
+        
+        console.log("Datos del usuario cargados:", user);
+    } catch (error) {
+        console.error("Error cargando datos del usuario:", error);
+        // No mostrar alerta para no interrumpir la experiencia del usuario
+    }
+}
 
 // Función principal de inicialización de tareas
 function inicializarTareas() {

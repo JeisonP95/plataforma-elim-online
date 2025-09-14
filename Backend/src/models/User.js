@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     phone: { type: String, trim: true },
     password: { type: String, required: true, minlength: 6 },
+    
+    // Campos para recuperación de contraseña
+    resetPasswordToken: { type: String },
+    resetPasswordExpiry: { type: Date },
 
     // 🔹 Relación con los cursos
     enrolledCourses: [

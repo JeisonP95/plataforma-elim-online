@@ -89,8 +89,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   /*Botones de acciones en perfil*/
   document.querySelectorAll(".perfil-actions button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      alert(`⚙️ Acción: ${btn.textContent}`);
+    btn.addEventListener("click", (e) => {
+      const action = btn.textContent.trim();
+      if (action.includes("Editar Perfil")) {
+        window.location.href = "/pages/perfil-configuracion/perfil-configuracion.html";
+      } else if (action.includes("Cambiar Contraseña")) {
+        window.location.href = "/pages/password/password.html?mode=change";
+      } else if (action.includes("Configuración")) {
+        window.location.href = "/pages/perfil-configuracion/perfil-configuracion.html?mode=config";
+      } else {
+        alert(`⚙️ Acción: ${action}`);
+      }
     });
   });
 });

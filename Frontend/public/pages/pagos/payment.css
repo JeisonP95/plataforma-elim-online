@@ -1,0 +1,71 @@
+
+.payment-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 350px;
+}
+
+.course-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.course-info img {
+  width: 100%;
+  max-height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.course-info h2 {
+  margin: 10px 0 5px;
+}
+
+.course-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  background: #4cafef;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #359ad7;
+}
+
+#message {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}

@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       profileEmail.textContent = `📧 ${user.email}`;
     }
     
-    // Cargar progreso del usuario
-    await loadUserProgress();
+    // Cargar cursos inscritos del usuario
+    await loadUserEnrolledCourses();
     
     // Cargar cursos disponibles
     await loadAvailableCourses();
@@ -85,16 +85,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   /*Botón "Inscribirse" en cursos disponibles*/
   document.querySelectorAll("#cursos-disponibles .btn-primary").forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
+    btn.addEventListener("click", (e) => {
       const curso = btn.closest(".curso");
       const titulo = curso.querySelector("h3").textContent;
       
       // Mapeo de títulos a IDs de cursos
       const courseMapping = {
-        'Gestión del Estrés para Adultos': 'gestion-estres-adultos',
-        'Conexión con la Naturaleza': 'conexion-naturaleza',
-        'Mindfulness para Niños': 'mindfulness-ninos',
-        'Yoga Familiar': 'yoga-familiar'
+        'Gestión del Estrés para Adultos': 'curso-adultos',
+        'Conexión con la Naturaleza': 'curso-naturaleza',
+        'Mindfulness para Niños': 'curso-ninos',
+        'Yoga Familiar': 'curso-yoga'
       };
       
       const courseId = courseMapping[titulo];
@@ -103,30 +103,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
       
-      try {
-        const response = await fetch(`${API_BASE}/api/users/enroll`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({ courseId })
-        });
-        
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error al inscribirse');
-        }
-        
-        alert(`🎉 Te inscribiste exitosamente en: ${titulo}`);
-        
-        // Recargar el progreso del usuario para mostrar el nuevo curso
-        await loadUserProgress();
-        
-      } catch (error) {
-        console.error('Error al inscribirse:', error);
-        alert(`Error al inscribirse: ${error.message}`);
-      }
+      // Redirigir a la página de pago
+      window.location.href = `/pages/pagos/payment.html?courseId=${courseId}`;
     });
   });
   /*Botones de acciones en perfil*/
@@ -145,8 +123,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 });
-// Función para cargar el progreso del usuario
-async function loadUserProgress() {
+// Función para cargar los cursos inscritos del usuario
+async function loadUserEnrolledCourses() {
   const API_BASE = window.location.hostname.includes("localhost")
     ? "http://localhost:3000"
     : "https://plataforma-elim-online.onrender.com";
@@ -155,33 +133,33 @@ async function loadUserProgress() {
   if (!token) return;
 
   try {
-    const response = await fetch(`${API_BASE}/api/users/progress`, {
+    const response = await fetch(`${API_BASE}/api/enroll/my-courses`, {
       headers: {
         "Authorization": `Bearer ${token}`,
       },
     });
 
     if (!response.ok) {
-      throw new Error("Error cargando progreso");
+      throw new Error("Error cargando cursos inscritos");
     }
 
-    const { courseProgress, enrolledCourses } = await response.json();
+    const { courses } = await response.json();
     
     // Actualizar sección de cursos inscritos
-    updateEnrolledCoursesSection(courseProgress, enrolledCourses);
+    updateEnrolledCoursesSection(courses);
     
-    console.log("Progreso del usuario cargado:", courseProgress);
+    console.log("Cursos inscritos cargados:", courses);
   } catch (error) {
-    console.error("Error cargando progreso del usuario:", error);
+    console.error("Error cargando cursos inscritos:", error);
   }
 }
 
 // Función para actualizar la sección de cursos inscritos
-function updateEnrolledCoursesSection(courseProgress, enrolledCourses) {
+function updateEnrolledCoursesSection(courses) {
   const enrolledSection = document.querySelector("#cursos-inscritos .cursos-lista");
   if (!enrolledSection) return;
 
-  if (!courseProgress || courseProgress.length === 0) {
+  if (!courses || courses.length === 0) {
     enrolledSection.innerHTML = `
       <div class="no-courses-message">
         <h3>📚 Aún no estás inscrito en ningún curso</h3>
@@ -191,88 +169,103 @@ function updateEnrolledCoursesSection(courseProgress, enrolledCourses) {
     return;
   }
 
-  // Mapeo de IDs de cursos a información
-  const courseInfo = {
-    'gestion-estres-adultos': {
-      title: 'Gestión del Estrés para Adultos',
-      description: 'Aprende técnicas efectivas para manejar el estrés en tu vida diaria',
-      image: '/images/curso-adultos-estres.jpeg',
-      link: '/pages/cursos/curso-adultos.html'
-    },
-    'conexion-naturaleza': {
-      title: 'Conexión con la Naturaleza',
-      description: 'Conecta con la naturaleza para mejorar tu bienestar',
-      image: '/images/curso-naturaleza.jpg',
-      link: '/pages/cursos/curso-naturaleza.html'
-    },
-    'mindfulness-ninos': {
-      title: 'Mindfulness para Niños',
-      description: 'Introduce a los niños al mindfulness de manera divertida',
-      image: '/images/curso-niños.jpeg',
-      link: '/pages/cursos/curso-ninos.html'
-    },
-    'yoga-familiar': {
-      title: 'Yoga Familiar',
-      description: 'Practica yoga en familia para fortalecer vínculos',
-      image: '/images/curso-yoga-familiar.jpg',
-      link: '/pages/cursos/curso-yoga.html'
-    }
-  };
-
-  enrolledSection.innerHTML = courseProgress.map(progress => {
-    const info = courseInfo[progress.courseId] || {
-      title: progress.courseName,
-      description: 'Curso de bienestar y desarrollo personal',
-      image: '/images/imagenPortada-curso.jpg',
-      link: '#'
-    };
-
-    const progressBar = progress.progressPercentage > 0 
+  enrolledSection.innerHTML = courses.map(course => {
+    const progressBar = course.progress > 0 
       ? `<div class="progress-bar">
-           <div class="progress-fill" style="width: ${progress.progressPercentage}%"></div>
+           <div class="progress-fill" style="width: ${course.progress}%"></div>
          </div>
-         <span class="progress-text">${progress.progressPercentage}% completado</span>`
+         <span class="progress-text">${course.progress}% completado</span>`
       : '<span class="progress-text">Recién inscrito</span>';
 
-    const statusClass = progress.progressPercentage === 100 ? 'completed' : 'in-progress';
-    const statusText = progress.progressPercentage === 100 ? 'Completado' : 'En progreso';
+    const statusClass = course.progress === 100 ? 'completed' : 'in-progress';
+    const statusText = course.progress === 100 ? 'Completado' : 'En progreso';
 
     return `
       <article class="curso ${statusClass}">
-        <img src="${info.image}" alt="${info.title}" width="40" height="40">
-        <h3>${info.title}</h3>
-        <p>${info.description}</p>
+        <img src="${course.course.image || '/images/imagenPortada-curso.jpg'}" alt="${course.course.title}" width="40" height="40">
+        <h3>${course.course.title}</h3>
+        <p>${course.course.description}</p>
         <div class="course-progress">
           ${progressBar}
         </div>
         <div class="course-stats">
           <span class="status-badge">${statusText}</span>
-          <span class="tasks-completed">${progress.completedTasks}/${progress.totalTasks} tareas</span>
+          <span class="tasks-completed">${course.completedLessons}/${course.totalLessons} lecciones</span>
         </div>
-        <button class="btn-primary" onclick="continueCourse('${progress.courseId}')">
-          ${progress.progressPercentage === 100 ? 'Ver Certificado' : 'Continuar Curso'}
-        </button>
+        <div class="course-actions">
+          <button class="btn-primary" onclick="continueCourse('${course.id}')">
+            ${course.progress === 100 ? 'Ver Certificado' : 'Continuar Curso'}
+          </button>
+          <button class="btn-secondary" onclick="updateProgress('${course.id}')">
+            Actualizar Progreso
+          </button>
+        </div>
       </article>
     `;
   }).join('');
 }
 
 // Función para continuar un curso
-function continueCourse(courseId) {
-  const courseInfo = {
-    'gestion-estres-adultos': '/pages/lecciones/leccion-adultos.html',
-    'conexion-naturaleza': '/pages/cursos/curso-naturaleza.html',
-    'mindfulness-ninos': '/pages/cursos/curso-ninos.html',
-    'yoga-familiar': '/pages/cursos/curso-yoga.html'
-  };
+function continueCourse(enrollmentId) {
+  // Por ahora, redirigir a la lección de adultos (esto se puede mejorar)
+  window.location.href = '/pages/lecciones/leccion-adultos.html';
+}
 
-  const courseLink = courseInfo[courseId];
-  if (courseLink) {
-    window.location.href = courseLink;
-  } else {
-    alert('Curso no disponible en este momento');
+// Función para actualizar el progreso de un curso
+async function updateProgress(enrollmentId) {
+  const API_BASE = window.location.hostname.includes("localhost")
+    ? "http://localhost:3000"
+    : "https://plataforma-elim-online.onrender.com";
+  
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert('Debes iniciar sesión para actualizar el progreso');
+    return;
+  }
+
+  // Solicitar nuevo progreso al usuario
+  const newProgress = prompt('Ingresa el nuevo progreso (0-100):');
+  if (newProgress === null) return;
+
+  const progress = parseInt(newProgress);
+  if (isNaN(progress) || progress < 0 || progress > 100) {
+    alert('El progreso debe ser un número entre 0 y 100');
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE}/api/enroll/${enrollmentId}/progress`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ 
+        progress,
+        completedLessons: Math.round((progress / 100) * 10) // Asumiendo 10 lecciones totales
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error al actualizar progreso');
+    }
+
+    const result = await response.json();
+    alert(`✅ Progreso actualizado a ${progress}%`);
+    
+    // Recargar los cursos para mostrar el progreso actualizado
+    await loadUserEnrolledCourses();
+
+  } catch (error) {
+    console.error('Error actualizando progreso:', error);
+    alert(`Error: ${error.message}`);
   }
 }
+
+// Hacer las funciones globales para que funcionen desde el HTML
+window.continueCourse = continueCourse;
+window.updateProgress = updateProgress;
 
 // Función para cargar cursos disponibles
 async function loadAvailableCourses() {

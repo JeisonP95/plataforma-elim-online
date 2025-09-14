@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pago</title>
+    <link rel="stylesheet" href="/Frontend/src/pages/login/login.css">
+    <link rel="stylesheet" href="/Frontend/style.css">
+    <link rel="stylesheet" href="/Frontend/src/pages/payment/payment.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <figure>
+                <img src="/Frontend/src/images/logo-removebg-preview.png" alt="Logo de Elim Online" class="logo-elim"
+                    loading="lazy">
+                <figcaption style="display:none;">Logo de Elim Online</figcaption>
+            </figure>
+            <a href="/Frontend/index.html" class="btn-secondary">Volver al Inicio</a>
+        </div>
+    </header>
+    <div class="login-section">
+        <h1>Adquirir Curso</h1>
+
+        <!-- Info del curso (rellenar desde la BD) -->
+        <div class="course-info">
+            <img id="courseImage" src="" alt="Imagen del curso">
+            <h2 id="courseTitle">Título del curso</h2>
+            <p id="courseDescription">Descripción breve del curso...</p>
+            <p class="price">Precio: <span id="coursePrice">$0</span></p>
+        </div>
+
+        <!-- Formulario de pago simulado -->
+        <form id="paymentForm">
+            <label for="cardNumber">Número de tarjeta</label>
+            <input type="text" id="cardNumber" placeholder="**** **** **** ****" required>
+
+            <label for="cardName">Nombre en la tarjeta</label>
+            <input type="text" id="cardName" placeholder="Nombre completo" required>
+
+            <label for="expiry">Fecha de expiración</label>
+            <input type="text" id="expiry" placeholder="MM/AA" required>
+
+            <label for="cvv">CVV</label>
+            <input type="password" id="cvv" placeholder="*" required>
+
+            <button type="submit">Pagar e Inscribirme</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script src="payment.js"></script>
+</body>
+<footer>
+    <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+    <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+    <p>
+        Síguenos en
+        <a href="https://facebook.com" target="_blank">Facebook</a> |
+        <a href="https://instagram.com" target="_blank">Instagram</a> |
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+    </p>
+    <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+</footer>
+</html>

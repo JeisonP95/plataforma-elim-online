@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Conexión con la Naturaleza – Elim</title>
+  <link rel="shortcut icon" href="/icons/icono.png" type="image/png">
+  <!-- Reusa el CSS del curso de ejemplo -->
+  <link rel="stylesheet" href="leccion-adultos.css">
+  <link rel="stylesheet" href="/style.css">
+  <!-- Librerías necesarias -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- JS específico del curso -->
+  <script src="leccion-naturaleza.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <figure>
+        <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="80" height="80" loading="lazy">
+      </figure>
+      <div class="nav-buttons">
+        <a href="/pages/dashboard/dashboard.html" class="btn-secondary">Volver al Inicio</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-tareas">
+      <h1>Conexión con la Naturaleza</h1>
+      <!-- TODO: Reemplazar "Nombre Apellido" por el dato real del usuario, ej: {{user.name}} -->
+      <p class="estudiante-info">Estudiante: <span id="nombre-estudiante">Nombre Apellido</span></p>
+
+      <div class="progreso-container">
+        <div class="progreso-info">
+          <span>Progreso del curso: <strong><span id="porcentaje-progreso">0</span>%</strong></span>
+        </div>
+        <div class="barra-progreso">
+          <div class="barra-completada" id="barra-completada"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tareas-container">
+      <div class="tareas-header">
+        <h2>Tareas del Curso</h2>
+        <div class="acciones-globales">
+          <button class="btn-secondary" id="btn-marcar-todas">Marcar Todo Completado</button>
+          <button class="btn-primary" id="btn-enviar-tareas">Enviar Tareas Completadas</button>
+        </div>
+      </div>
+
+      <div class="tareas-lista" id="tareas-lista">
+        <!-- Tarea 1 -->
+        <article class="tarea" data-tarea="introduccion-naturaleza">
+          <div class="tarea-header">
+            <div class="tarea-numero">1</div>
+            <div class="tarea-info">
+              <h3>Leer: Beneficios de estar en la naturaleza</h3>
+              <p>Lee el artículo breve sobre cómo las actividades al aire libre mejoran la salud mental y física.</p>
+            </div>
+            <div class="tarea-estado">
+              <input type="checkbox" class="checkbox-completada" id="check-1">
+              <span class="estado-texto">Pendiente</span>
+            </div>
+          </div>
+          <div class="tarea-acciones">
+            <button class="btn-siguiente" data-siguiente="2">Siguiente →</button>
+          </div>
+        </article>
+
+        <!-- Tarea 2 - VIDEO DE YOUTUBE -->
+        <article class="tarea" data-tarea="video-senderismo">
+          <div class="tarea-header">
+            <div class="tarea-numero">2</div>
+            <div class="tarea-info">
+              <h3>Ver Video: Mini-rutina de senderismo</h3>
+              <p>Observa este video corto con recomendaciones para una caminata consciente en familia.</p>
+            </div>
+            <div class="tarea-estado">
+              <input type="checkbox" class="checkbox-completada" id="check-2">
+              <span class="estado-texto">Pendiente</span>
+            </div>
+          </div>
+
+          <div class="video-container">
+            <!-- TODO: cambiar VIDEO_ID por el id real del video -->
+            <iframe id="youtube-video"
+                    width="100%"
+                    height="315"
+                    src="https://www.youtube.com/embed/KYfQCCaruPQ?si=fwjtQSUWoobzEzCe"
+                    title="Mini-rutina de senderismo"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+
+            <!-- Fallback manual para entornos sin API -->
+            <div class="video-fallback" id="video-fallback" style="display: none;">
+              <label class="checkbox-container">
+                <input type="checkbox" id="video-confirmacion">
+                <span class="checkmark"></span>
+                He visto el video completo
+              </label>
+            </div>
+          </div>
+
+          <div class="tarea-acciones">
+            <button class="btn-siguiente" data-siguiente="3" id="btn-video-siguiente" disabled>Siguiente →</button>
+          </div>
+        </article>
+
+        <!-- Tarea 3 -->
+        <article class="tarea" data-tarea="actividad-fotos">
+          <div class="tarea-header">
+            <div class="tarea-numero">3</div>
+            <div class="tarea-info">
+              <h3>Actividad: Mini-reto fotográfico</h3>
+              <p>Sal a la naturaleza y toma 3 fotos: una planta, una textura y un color que te guste.</p>
+            </div>
+            <div class="tarea-estado">
+              <input type="checkbox" class="checkbox-completada" id="check-3">
+              <span class="estado-texto">Pendiente</span>
+            </div>
+          </div>
+          <div class="tarea-acciones">
+            <button class="btn-siguiente" data-siguiente="4">Siguiente →</button>
+          </div>
+        </article>
+
+        <!-- Tarea 4 -->
+        <article class="tarea" data-tarea="plan-accion">
+          <div class="tarea-header">
+            <div class="tarea-numero">4</div>
+            <div class="tarea-info">
+              <h3>Actividad: Plan personal de conexión</h3>
+              <p>Diseña una mini-rutina semanal de 15-30 minutos para conectar con la naturaleza.</p>
+            </div>
+            <div class="tarea-estado">
+              <input type="checkbox" class="checkbox-completada" id="check-4">
+              <span class="estado-texto">Pendiente</span>
+            </div>
+          </div>
+          <div class="tarea-acciones">
+            <button class="btn-siguiente" data-siguiente="resumen">Ver Resumen →</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Área de resumen/envío -->
+      <section class="resumen-tareas" id="resumen-tareas" style="display: none;">
+        <h3>¡Felicitaciones!</h3>
+        <p>Has completado todas las tareas del curso. Revisa tu progreso y envía las tareas completadas.</p>
+        <div class="resumen-stats">
+          <span>Tareas completadas: <strong><span id="tareas-completadas-count">0</span>/4</strong></span>
+        </div>
+        <button class="btn-primary" id="btn-enviar-final">Finalizar y Enviar</button>
+      </section>
+
+      <!-- Mensaje cuando no hay tareas -->
+      <div class="sin-tareas" id="sin-tareas" style="display: none;">
+        <p>No hay tareas asignadas para este curso.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de confirmación de envío -->
+  <div class="modal" id="modal-confirmacion" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirmar Envío de Tareas</h3>
+        <span class="modal-close" id="modal-close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>Estás a punto de enviar las siguientes tareas completadas:</p>
+        <ul id="lista-tareas-enviar"></ul>
+        <p><strong>¿Confirmas el envío?</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="btn-cancelar">Cancelar</button>
+        <button class="btn-primary" id="btn-confirmar-envio">Confirmar Envío</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
+    <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+    <p>
+      Síguenos en
+      <a href="https://facebook.com" target="_blank">Facebook</a> |
+      <a href="https://instagram.com" target="_blank">Instagram</a> |
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+    </p>
+    <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
+  </footer>
+</body>
+</html>

@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión del Estrés para Adultos – Elim</title>
+    <title>Yoga Familiar – Elim</title>
     <link rel="shortcut icon" href="/icons/icono.png" type="image/png">
     <link rel="stylesheet" href="leccion-adultos.css">
     <link rel="stylesheet" href="/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="leccion-adultos.js" defer></script>
-
+    <script src="leccion-yoga.js" defer></script>
 </head>
 <body>
     <header>
         <div class="nav">
             <figure>
-                <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" class="logo-elim" loading="lazy">
-                <figcaption style="display:none;">Logo de Elim Online</figcaption>
+                <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" width="80" height="80" loading="lazy">
             </figure>
             <div class="nav-buttons">
                 <a href="/pages/dashboard/dashboard.html" class="btn-secondary">Volver al Inicio</a>
@@ -27,10 +25,10 @@
 
     <main>
         <section class="hero-tareas">
-            <h1>Gestión del Estrés para Adultos</h1>
-            <!-- TODO: Reemplazar "Nombre Apellido" por el dato real del usuario, ej: {{user.name}} -->
+            <h1>Yoga Familiar</h1>
+            <!-- TODO: Reemplazar "Nombre Apellido" por el dato real del usuario -->
             <p class="estudiante-info">Estudiante: <span id="nombre-estudiante">Nombre Apellido</span></p>
-            
+
             <div class="progreso-container">
                 <div class="progreso-info">
                     <span>Progreso del curso: <strong><span id="porcentaje-progreso">0</span>%</strong></span>
@@ -52,12 +50,12 @@
 
             <div class="tareas-lista" id="tareas-lista">
                 <!-- Tarea 1 -->
-                <article class="tarea" data-tarea="introduccion-estres">
+                <article class="tarea" data-tarea="introduccion-yoga">
                     <div class="tarea-header">
                         <div class="tarea-numero">1</div>
                         <div class="tarea-info">
-                            <h3>Leer: Introducción al Estrés</h3>
-                            <p>Lee el material introductorio sobre qué es el estrés y cómo afecta nuestro cuerpo y mente.</p>
+                            <h3>Leer: Beneficios del Yoga Familiar</h3>
+                            <p>Lee sobre cómo el yoga fortalece el vínculo entre padres e hijos.</p>
                         </div>
                         <div class="tarea-estado">
                             <input type="checkbox" class="checkbox-completada" id="check-1">
@@ -70,33 +68,32 @@
                 </article>
 
                 <!-- Tarea 2 - VIDEO DE YOUTUBE -->
-                <article class="tarea" data-tarea="video-tecnicas-respiracion">
+                <article class="tarea" data-tarea="video-rutina-familiar">
                     <div class="tarea-header">
                         <div class="tarea-numero">2</div>
                         <div class="tarea-info">
-                            <h3>Ver Video: Técnicas de Respiración</h3>
-                            <p>Observa este video sobre técnicas de respiración profunda para reducir el estrés.</p>
+                            <h3>Ver Video: Rutina de Yoga Familiar</h3>
+                            <p>Realiza esta rutina sencilla de yoga con tus hijos.</p>
                         </div>
                         <div class="tarea-estado">
                             <input type="checkbox" class="checkbox-completada" id="check-2">
                             <span class="estado-texto">Pendiente</span>
                         </div>
                     </div>
-                    
-                    
+
                     <div class="video-container">
                         <!-- TODO: cambiar VIDEO_ID por el id real del video -->
-                        <iframe id="youtube-video" 
-                                width="100%" 
-                                height="315" 
-                                src="https://www.youtube.com/embed/nSOtWvB968U?si=z21D7is7gQ6Q7xIU" 
-                                title="Técnicas de Respiración para el Estrés" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        <iframe id="youtube-video"
+                                width="100%"
+                                height="315"
+                                src="https://www.youtube.com/embed/gqwzOnZYF1E?si=QFHXu277idg6Z-gn"
+                                title="Rutina de Yoga Familiar"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                         </iframe>
-                        
-                        <!-- Fallback manual para entornos sin CORS -->
+
+                        <!-- Fallback manual -->
                         <div class="video-fallback" id="video-fallback" style="display: none;">
                             <label class="checkbox-container">
                                 <input type="checkbox" id="video-confirmacion">
@@ -105,19 +102,19 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="tarea-acciones">
                         <button class="btn-siguiente" data-siguiente="3" id="btn-video-siguiente" disabled>Siguiente →</button>
                     </div>
                 </article>
 
                 <!-- Tarea 3 -->
-                <article class="tarea" data-tarea="ejercicio-relajacion">
+                <article class="tarea" data-tarea="practica-parejas">
                     <div class="tarea-header">
                         <div class="tarea-numero">3</div>
                         <div class="tarea-info">
-                            <h3>Práctica: Ejercicio de Relajación</h3>
-                            <p>Realiza 10 minutos de ejercicios de relajación muscular progresiva.</p>
+                            <h3>Práctica: Posturas en Pareja</h3>
+                            <p>Elige 3 posturas para realizar con tu hijo y descríbelas en tu cuaderno.</p>
                         </div>
                         <div class="tarea-estado">
                             <input type="checkbox" class="checkbox-completada" id="check-3">
@@ -130,12 +127,12 @@
                 </article>
 
                 <!-- Tarea 4 -->
-                <article class="tarea" data-tarea="diario-estres">
+                <article class="tarea" data-tarea="reflexion-familiar">
                     <div class="tarea-header">
                         <div class="tarea-numero">4</div>
                         <div class="tarea-info">
-                            <h3>Actividad: Diario de Estrés</h3>
-                            <p>Durante una semana, lleva un registro diario de tus niveles de estrés y sus desencadenantes.</p>
+                            <h3>Actividad: Reflexión Familiar</h3>
+                            <p>Conversen juntos sobre cómo se sintieron al hacer yoga en familia.</p>
                         </div>
                         <div class="tarea-estado">
                             <input type="checkbox" class="checkbox-completada" id="check-4">
@@ -183,6 +180,7 @@
             </div>
         </div>
     </div>
+
     <footer>
         <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
         <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
@@ -194,4 +192,5 @@
         </p>
         <p>Dirección: Calle Bienestar 123, Cali, Colombia</p>
     </footer>
-    </html>
+</body>
+</html>

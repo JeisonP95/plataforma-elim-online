@@ -62,18 +62,18 @@ function enrollCourse(courseId) {
   
   // Mapeo de títulos de cursos a sus páginas específicas
   const courseTitleMapping = {
-    'Gestión del Estrés para Adultos': '/pages/curso-adultos/curso-adultos.html',
-    'Conexión con la Naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
-    'Mindfulness para Niños': '/pages/curso-ninos/curso-ninos.html',
-    'Yoga Familiar': '/pages/curso-yoga/curso-yoga.html'
+    'Gestión del Estrés para Adultos': '/pages/cursos/curso-adultos.html',
+    'Conexión con la Naturaleza': '/pages/cursos/curso-naturaleza.html', 
+    'Mindfulness para Niños': '/pages/cursos/curso-ninos.html',
+    'Yoga Familiar': '/pages/cursos/curso-yoga.html'
   };
   
   // Mapeo de IDs de cursos a sus páginas específicas (fallback)
   const courseIdMapping = {
-    'curso-adultos': '/pages/curso-adultos/curso-adultos.html',
-    'curso-naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
-    'curso-ninos': '/pages/curso-ninos/curso-ninos.html',
-    'curso-yoga': '/pages/curso-yoga/curso-yoga.html'
+    'curso-adultos': '/pages/cursos/curso-adultos.html',
+    'curso-naturaleza': '/pages/cursos/curso-naturaleza.html', 
+    'curso-ninos': '/pages/cursos/curso-ninos.html',
+    'curso-yoga': '/pages/cursos/curso-yoga.html'
   };
   
   // Buscar por título primero (más confiable)

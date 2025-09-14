@@ -1,25 +1,25 @@
 /* General */
 body {
     margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
     background: #f6f6fa;
     color: #333;
-}
-
-/* Header */
-header {
+  }
+  
+  /* Header */
+  header {
     background: linear-gradient(90deg, #a39bc2 60%, #6c63a4 100%);
     padding: 10px;
-}
-header h1 {
+  }
+  header h1 {
     margin: 0;
     padding: 2rem 0 0.5rem 0;
     text-align: center;
     color: #fff;
     font-size: 2.5rem;
     letter-spacing: 2px;
-}
-nav {
+  }
+  nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -27,40 +27,46 @@ nav {
     max-width: 100%;
     margin: 0 auto;
     padding: 15px 30px;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     list-style: none;
     display: flex;
     gap: 1.5rem;
     align-items: center;
-}
-nav ul li a {
+  }
+  nav ul li a {
     color: #fff;
     font-weight: 500;
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     transition: background 0.2s;
-}
-nav ul li a:hover {
+  }
+  nav ul li a:hover {
     background: #fff;
     color: #6c63a4;
-}
-.nav-buttons {
+  }
+  .nav-buttons {
     display: flex;
     gap: 1rem;
-}
-
-.nav {
+  }
+  
+  .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 30px;
-}
-
-/* Botones */
-.btn-primary, .btn-secondary {
+  }
+  
+  .logo-elim {
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Botones */
+  .btn-primary,
+  .btn-secondary {
     border: none;
     border-radius: 20px;
     padding: 0.7rem 1.5rem;
@@ -69,53 +75,53 @@ nav ul li a:hover {
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
     box-shadow: 0 2px 16px rgba(29, 28, 40, 0.08);
-}
-.btn-primary {
+  }
+  .btn-primary {
     background: #7f78ab;
     color: #fff;
     border: 2px solid #b3b2b8;
-}
-
-.btn-primary:hover {
+  }
+  
+  .btn-primary:hover {
     background: #9694a4;
-}
-.btn-secondary {
+  }
+  .btn-secondary {
     background: #fff;
     color: #6c63a4;
     border: 2px solid #6c63a4;
-}
-.btn-secondary:hover {
+  }
+  .btn-secondary:hover {
     background: #e0def7;
-}
-
-/* Hero Section */
-.hero {
+  }
+  
+  /* Hero Section */
+  .hero {
     background: linear-gradient(90deg, #a39bc2 60%, #6c63a4 100%);
     color: #fff;
     text-align: center;
     padding: 1rem 1rem 3rem 1rem;
     margin-top: 1px;
-}
-.hero h2 {
+  }
+  .hero h2 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
-}
-.hero p {
+  }
+  .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-}
-
-/* Cursos */
-#cursos {
+  }
+  
+  /* Cursos */
+  #cursos {
     background: #f6f6fa;
     padding: 3rem 1rem;
     text-align: center;
-}
-#cursos h2 {
+  }
+  #cursos h2 {
     color: #6c63a4;
     margin-bottom: 0.5rem;
-}
-.cursos-lista {
+  }
+  .cursos-lista {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
@@ -123,29 +129,29 @@ nav ul li a:hover {
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
-}
-.curso {
+  }
+  .curso {
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 2px 16px rgba(108,99,164,0.08);
+    box-shadow: 0 2px 16px rgba(108, 99, 164, 0.08);
     padding: 2rem 1.2rem 1.5rem 1.2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: transform 0.15s, box-shadow 0.15s;
-}
-.curso:hover {
+  }
+  .curso:hover {
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 6px 24px rgba(108,99,164,0.15);
-}
-.curso img {
+    box-shadow: 0 6px 24px rgba(108, 99, 164, 0.15);
+  }
+  .curso img {
     margin-bottom: 1rem;
-}
-.curso h3 {
+  }
+  .curso h3 {
     color: #6c63a4;
     margin-bottom: 0.5rem;
-}
-.curso ul {
+  }
+  .curso ul {
     list-style: none;
     padding: 0;
     margin: 1rem 0;
@@ -153,132 +159,165 @@ nav ul li a:hover {
     gap: 1.5rem;
     color: #483d8b;
     font-weight: 500;
-}
-.curso button {
+  }
+  .curso button {
     margin-top: auto;
-}
-
-.dashboard-section {
+  }
+  
+  .dashboard-section {
     background: #f6f6fa;
     padding: 3rem 1rem;
     text-align: center;
-}
-
-.dashboard-section h2 {
+  }
+  
+  .dashboard-section h2 {
     color: #6c63a4;
     margin-bottom: 2rem;
-}
-
-/* About */
-.about {
+  }
+  
+  /* About */
+  .about {
     background: linear-gradient(90deg, #a39bc2 60%, #6c63a4 100%);
     background: #c6c6f0;
     flex-direction: column;
     align-items: center;
     padding: 1rem 1rem 1rem 1rem;
     text-align: center;
-  
-}
-.about h2 {
+  }
+  .about h2 {
     margin-bottom: 1rem;
-}
-
-/* Contact */
-.contact {
+  }
+  
+  /* Contact */
+  .contact {
     background: #483d8b;
     color: #fff;
     padding: 3rem 1rem;
     text-align: center;
-
-}
-.contact h2 {
+  }
+  .contact h2 {
     margin-bottom: 1.5rem;
-}
-.contact-form {
+  }
+  .contact-form {
     max-width: 400px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     padding: 15px;
-}
-.contact-form input,
-.contact-form textarea {
+  }
+  .contact-form input,
+  .contact-form textarea {
     border: none;
     border-radius: 10px;
     padding: 0.8rem 1rem;
     font-size: 1rem;
     resize: none;
-}
-.contact-form textarea {
+  }
+  .contact-form textarea {
     min-height: 100px;
-}
-.contact-form button {
+  }
+  .contact-form button {
     align-self: flex-end;
-}
-
-/* Footer */
-footer {
+  }
+  
+  /* Footer */
+  footer {
     background: #6c63a4;
     color: #fff;
     text-align: center;
     padding: 2rem 1rem;
     font-size: 1rem;
-}
-footer a {
+  }
+  footer a {
     color: #fff;
     text-decoration: underline;
     margin: 0 0.2rem;
-}
-footer a:hover {
+  }
+  footer a:hover {
     color: #a39bc2;
-}
-
-@media screen and (max-width: 768px) {
+  }
+  
+  @media screen and (max-width: 768px) {
     nav {
-        flex-direction: column; /* los elementos se apilan verticalmente */
-        align-items: center; /* opcional, para que no queden centrados */
-        justify-content: center;
+      display: flex;
+      flex-direction: row;    /* fila */
+      flex-wrap: wrap;        /* permite que el menú baje a la 2ª línea */
+      align-items: center;
+      padding: 0.5rem 1rem;
     }
-
+  
+    /* Logo: primer elemento en la 1ª fila */
+    nav .logo {
+      order: 1;
+      display: flex;
+      align-items: center;
+      flex: 0 1 auto;        /* ocupa lo que necesite */
+    }
+  
+    /* Botones: segundo elemento en la 1ª fila y empujados a la derecha */
+    nav .nav-buttons {
+      order: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: auto;     /* empuja a la derecha dentro de la fila */
+      flex: 0 1 auto;
+      width: auto;           /* ANULA width:100% si lo tenías */
+    }
+  
+    /* Menú: forzamos que ocupe la 2ª fila entera */
     nav ul {
-        flex-direction:row; /* el menú se apila */
-        align-items: center; /* opcional, para que no queden centrados */
-        justify-content: center;
-        gap: 10px; /* espacio entre links más pequeño */
-        width: 100%;
-        padding: 10px 10px;
+      order: 3;
+      flex-basis: 100%;      /* ocupa toda la línea siguiente */
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      width: 100%;
     }
-
+  
+    /* Enlaces: anular width:100% si existía y que queden inline */
     nav ul li a {
-        width: 100%; /* que el link ocupe todo el ancho */
-        text-align: center;
-        padding: 0.5rem 0;
+      display: inline-block;
+      width: auto;           /* ANULA width:100% global */
+      padding: 0.5rem;
+      text-align: center;
     }
-
-    .nav-buttons {
-        flex-direction: row; /* botones también apilados */
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        margin-top: 10px;
+  
+    /* Ajustes imagen logo */
+    nav .logo img {
+      display: block;
+      max-width: 90px;
+      height: auto;
     }
-    .logo {
-        width: 60px;
-        height: 60px;
-    }
-
+  
     .contact-form {
-        flex-direction: column;
-        padding: 20px;
+      flex-direction: column;
+      padding: 20px;
     }
-
+  
     .nav {
-        flex-direction: row;
-        padding: 0 10px;
-        align-items: center;
+      flex-direction: row;
+      padding: 0 10px;
+      align-items: center;
+      justify-content: space-between;
     }
-
-}
-
-
+  
+    .logo-elim {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .btn-primary {
+      padding: 10px;
+      font-size: 13px;
+    }
+    .btn-secondary {
+      padding: 10px;
+      font-size: 13px;
+    }
+  }
+  

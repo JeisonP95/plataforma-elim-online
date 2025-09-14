@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Actualizar nombre en el menú
     const nameEl = document.querySelector(".user-name");
     if (nameEl && user) {
-      nameEl.textContent = `¡Hola, ${user.firstName}!`;
+      nameEl.textContent = `${user.firstName}!`;
     }
     
     // Actualizar título de bienvenida
@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       alert(`📘 Detalles del curso: ${titulo}`);
     });
   });
-
   /*Botón "Inscribirse" en cursos disponibles*/
   document.querySelectorAll("#cursos-disponibles .btn-primary").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -88,7 +87,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       alert(`🎉 Te inscribiste en: ${titulo}`);
     });
   });
-
   /*Botones de acciones en perfil*/
   document.querySelectorAll(".perfil-actions button").forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -96,7 +94,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 });
-
 // Función para cargar cursos disponibles
 async function loadAvailableCourses() {
   const API_BASE =
@@ -111,7 +108,7 @@ async function loadAvailableCourses() {
     if (!res.ok) {
       throw new Error(`Error ${res.status}: ${res.statusText}`);
     }
-    
+  
     const courses = await res.json();
     console.log("Cursos recibidos:", courses);
     
@@ -162,18 +159,18 @@ function enrollCourse(courseId) {
   
   // Mapeo de títulos de cursos a sus páginas específicas
   const courseTitleMapping = {
-    'Gestión del Estrés para Adultos': '/pages/curso-adultos/curso-adultos.html',
-    'Conexión con la Naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
-    'Mindfulness para Niños': '/pages/curso-ninos/curso-ninos.html',
-    'Yoga Familiar': '/pages/curso-yoga/curso-yoga.html'
+    'Gestión del Estrés para Adultos': '/pages/cursos/curso-adultos.html',
+    'Conexión con la Naturaleza': '/pages/cursos/curso-naturaleza.html', 
+    'Mindfulness para Niños': '/pages/cursos/curso-ninos.html',
+    'Yoga Familiar': '/pages/cursos/curso-yoga.html'
   };
   
   // Mapeo de IDs de cursos a sus páginas específicas (fallback)
   const courseIdMapping = {
-    'curso-adultos': '/pages/curso-adultos/curso-adultos.html',
-    'curso-naturaleza': '/pages/curso-naturaleza/curso-naturaleza.html', 
-    'curso-ninos': '/pages/curso-ninos/curso-ninos.html',
-    'curso-yoga': '/pages/curso-yoga/curso-yoga.html'
+    'curso-adultos': '/pages/cursos/curso-adultos.html',
+    'curso-naturaleza': '/pages/cursos/curso-naturaleza.html', 
+    'curso-ninos': '/pages/cursos/curso-ninos.html',
+    'curso-yoga': '/pages/cursos/curso-yoga.html'
   };
   
   // Buscar por título primero (más confiable)

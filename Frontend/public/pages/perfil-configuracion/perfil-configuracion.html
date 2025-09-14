@@ -32,6 +32,12 @@
                 <h1 id="pageTitle">Perfil y Configuración</h1>
                 <p id="pageDescription">Gestiona tu información personal y preferencias</p>
 
+                <!-- Navegación entre modos -->
+                <div class="mode-navigation" style="margin-bottom: 20px; text-align: center;">
+                    <a href="?mode=profile" class="btn-secondary" id="profileModeBtn">👤 Editar Perfil</a>
+                    <a href="?mode=config" class="btn-secondary" id="configModeBtn">⚙️ Configuración</a>
+                </div>
+
                 <!-- Formulario de Editar Perfil -->
                 <form id="editarPerfilForm" class="contact-form" style="display: none;">
                     <div class="form-header">
@@ -53,10 +59,7 @@
                     <input type="email" id="email" name="email" required placeholder="tu@email.com" value="maria.gonzalez@email.com">
 
                     <label for="telefono">Teléfono (Opcional)</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="+34 123 456 789">
-
-                    <label for="fechaNacimiento">Fecha de Nacimiento (Opcional)</label>
-                    <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+                    <input type="tel" id="telefono" name="telefono" placeholder="ej: 310456789">
 
                     <button type="submit" class="btn-primary">Guardar Cambios</button>
                     

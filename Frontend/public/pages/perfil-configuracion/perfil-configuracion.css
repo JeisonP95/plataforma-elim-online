@@ -1,22 +1,3 @@
-/* ========================================
-   ESTILOS PARA PERFIL Y CONFIGURACIÓN
-   ======================================== */
-
-/* ========================================
-   1. CONFIGURACIÓN GENERAL
-   ======================================== */
-/* Los estilos del body se heredan del CSS principal (style.css) */
-/* No redefinir body para mantener consistencia */
-
-/* ========================================
-   2. HEADER Y NAVEGACIÓN
-   ======================================== */
-/* Los estilos del header y nav se heredan del CSS principal (style.css) */
-/* No agregar estilos adicionales aquí para mantener consistencia */
-
-/* ========================================
-   3. SECCIÓN PRINCIPAL (igual que login-section)
-   ======================================== */
 .perfil-configuracion-section {
     background: linear-gradient(90deg, #6c63a4 60%, #483d8b 100%);
     color: #fff;
@@ -42,9 +23,6 @@
     opacity: 0.9;
 }
 
-/* ========================================
-   4. FORMULARIOS (igual que login-section form)
-   ======================================== */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -100,9 +78,6 @@
     border: 2px solid #e74c3c;
 }
 
-/* ========================================
-   5. SECCIÓN DE AVATAR
-   ======================================== */
 .avatar-section {
     display: flex;
     justify-content: center;
@@ -136,9 +111,6 @@
     color: #6c63a4;
 }
 
-/* ========================================
-   6. SECCIONES DE CONFIGURACIÓN
-   ======================================== */
 .config-section {
     background: rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
@@ -166,9 +138,6 @@
     margin-bottom: 0;
 }
 
-/* ========================================
-   7. SWITCH TOGGLE
-   ======================================== */
 .switch {
     position: relative;
     display: inline-block;
@@ -233,9 +202,6 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-/* ========================================
-   8. BOTONES (igual que login-section button)
-   ======================================== */
 .btn-primary {
     background: #fff;
     color: #6c63a4;
@@ -258,11 +224,6 @@ input:checked + .slider:before {
     color: #483d8b;
 }
 
-/* Los estilos de .btn-secondary se heredan del CSS principal (style.css) */
-
-/* ========================================
-   9. MENSAJES Y ESTADOS
-   ======================================== */
 .form-footer {
     text-align: center;
     margin-top: 1rem;
@@ -312,9 +273,6 @@ input:checked + .slider:before {
     flex-wrap: wrap;
 }
 
-/* ========================================
-   10. RESPONSIVE DESIGN
-   ======================================== */
 @media (max-width: 768px) {
     .perfil-configuracion-section {
         margin: 1rem;

@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     phone: { type: String, trim: true },
     password: { type: String, required: true, minlength: 6 },
+    
+    // 🔹 Tokens para recuperación de contraseña
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
 
     // 🔹 Relación con los cursos
     enrolledCourses: [
@@ -32,6 +36,15 @@ userSchema.pre("save", async function (next) {
 // 🔹 Método para validar contraseñas
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
+};
+
+// 🔹 Método para generar token de recuperación
+userSchema.methods.generateResetToken = function () {
+  const crypto = require('crypto');
+  const token = crypto.randomBytes(32).toString('hex');
+  this.resetPasswordToken = token;
+  this.resetPasswordExpires = Date.now() + 3600000; // 1 hora
+  return token;
 };
 
 const User = mongoose.model("User", userSchema);

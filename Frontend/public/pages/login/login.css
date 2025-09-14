@@ -34,8 +34,8 @@
     color: #6c63a4;
     border: none;
     border-radius: 20px;
-    padding: 0.8rem 1.5rem;
-    font-size: 1.1rem;
+    padding: 12px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     margin-top: 1rem;
@@ -46,3 +46,13 @@
     background: #e0def7;
     color: #483d8b;
 }
+
+#apassword {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;   
+}
+#apassword:hover {
+    color: #c6c6f0;
+  }
+  

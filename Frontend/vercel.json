@@ -6,7 +6,32 @@
     { "source": "/perfil-configuracion", "destination": "/pages/perfil-configuracion/perfil-configuracion.html" },
     { "source": "/terminoscondiciones", "destination": "/pages/terminoscondiciones/terminos.html" },
     { "source": "/cursos", "destination": "/pages/cursos/curso-detalle.html" },
-    { "source": "/dashboard", "destination": "/pages/dashboard/dashboard.html" }
+    { "source": "/dashboard", "destination": "/pages/dashboard/dashboard.html" },
+    { "source": "/pagos", "destination": "/pages/pagos/payment.html" },
+    { "source": "/curso-adultos", "destination": "/pages/cursos/curso-adultos.html" },
+    { "source": "/curso-naturaleza", "destination": "/pages/cursos/curso-naturaleza.html" },
+    { "source": "/curso-ninos", "destination": "/pages/cursos/curso-ninos.html" },
+    { "source": "/curso-yoga", "destination": "/pages/cursos/curso-yoga.html" },
+    { "source": "/leccion-adultos", "destination": "/pages/lecciones/leccion-adultos.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
   ]
 }
 

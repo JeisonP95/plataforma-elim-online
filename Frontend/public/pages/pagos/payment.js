@@ -38,17 +38,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!cardNumber || !cardName || !expiry || !cvv) {
       message.innerText = "❌ Por favor completa todos los campos";
+      message.className = "error";
       return;
     }
 
     // Simular validación de tarjeta
     if (cardNumber.length < 16) {
       message.innerText = "❌ Número de tarjeta inválido";
+      message.className = "error";
       return;
     }
 
     message.innerText = "Procesando pago...";
-    message.style.color = "#FF9800";
+    message.className = "info";
 
     try {
       // Llamar a la API de inscripción
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       message.innerText = "✅ Pago exitoso. ¡Ya estás inscrito en el curso!";
-      message.style.color = "#4CAF50";
+      message.className = "success";
 
       // Redirigir al dashboard después de 2 segundos
       setTimeout(() => {
@@ -86,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
       console.error("Error en el pago:", error);
       message.innerText = `❌ Error: ${error.message}`;
-      message.style.color = "#F44336";
+      message.className = "error";
     }
   });
 
@@ -111,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (error) {
       console.error("Error cargando curso:", error);
       message.innerText = "❌ Error al cargar información del curso";
-      message.style.color = "#F44336";
+      message.className = "error";
     }
   }
 });

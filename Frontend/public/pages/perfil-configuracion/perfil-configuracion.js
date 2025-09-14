@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Cargar datos del usuario
   await loadUserData();
 
+  // Cargar progreso de cursos
+  await loadUserCourseProgress();
+
   // Mostrar el formulario correspondiente
   if (mode === "config") {
     showConfiguracionForm();
@@ -126,6 +129,121 @@ document.addEventListener("DOMContentLoaded", async () => {
       perfilPublico.checked = settings.perfilPublico || false;
     }
   }
+
+  async function loadUserCourseProgress() {
+    try {
+      const response = await fetch(`${API_BASE}/api/users/progress`, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Error cargando progreso");
+      }
+
+      const { courseProgress } = await response.json();
+      
+      // Mostrar progreso de cursos en el perfil
+      displayCourseProgress(courseProgress);
+      
+    } catch (error) {
+      console.error("Error cargando progreso de cursos:", error);
+    }
+  }
+
+  function displayCourseProgress(courseProgress) {
+    // Crear sección de progreso de cursos si no existe
+    let progressSection = document.getElementById("course-progress-section");
+    if (!progressSection) {
+      progressSection = document.createElement("div");
+      progressSection.id = "course-progress-section";
+      progressSection.className = "course-progress-section";
+      
+      // Insertar después del formulario de perfil
+      const perfilForm = document.getElementById("editarPerfilForm");
+      if (perfilForm) {
+        perfilForm.parentNode.insertBefore(progressSection, perfilForm.nextSibling);
+      }
+    }
+
+    if (!courseProgress || courseProgress.length === 0) {
+      progressSection.innerHTML = `
+        <div class="progress-header">
+          <h3>📚 Mis Cursos</h3>
+          <p>No estás inscrito en ningún curso aún</p>
+        </div>
+      `;
+      return;
+    }
+
+    const totalCourses = courseProgress.length;
+    const completedCourses = courseProgress.filter(cp => cp.progressPercentage === 100).length;
+    const totalTasks = courseProgress.reduce((sum, cp) => sum + cp.totalTasks, 0);
+    const completedTasks = courseProgress.reduce((sum, cp) => sum + cp.completedTasks, 0);
+
+    progressSection.innerHTML = `
+      <div class="progress-header">
+        <h3>📚 Mis Cursos</h3>
+        <div class="progress-summary">
+          <div class="summary-item">
+            <span class="summary-number">${totalCourses}</span>
+            <span class="summary-label">Cursos</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-number">${completedCourses}</span>
+            <span class="summary-label">Completados</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-number">${completedTasks}/${totalTasks}</span>
+            <span class="summary-label">Tareas</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="courses-list">
+        ${courseProgress.map(course => `
+          <div class="course-item ${course.progressPercentage === 100 ? 'completed' : 'in-progress'}">
+            <div class="course-info">
+              <h4>${course.courseName}</h4>
+              <div class="course-progress-bar">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: ${course.progressPercentage}%"></div>
+                </div>
+                <span class="progress-text">${course.progressPercentage}%</span>
+              </div>
+              <div class="course-stats">
+                <span class="tasks-count">${course.completedTasks}/${course.totalTasks} tareas</span>
+                <span class="course-status">${course.progressPercentage === 100 ? 'Completado' : 'En progreso'}</span>
+              </div>
+            </div>
+            <div class="course-actions">
+              <button class="btn-secondary" onclick="viewCourseDetails('${course.courseId}')">
+                Ver Detalles
+              </button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // Función para ver detalles del curso
+  window.viewCourseDetails = function(courseId) {
+    const courseInfo = {
+      'gestion-estres-adultos': '/pages/lecciones/leccion-adultos.html',
+      'conexion-naturaleza': '/pages/cursos/curso-naturaleza.html',
+      'mindfulness-ninos': '/pages/cursos/curso-ninos.html',
+      'yoga-familiar': '/pages/cursos/curso-yoga.html'
+    };
+
+    const courseLink = courseInfo[courseId];
+    if (courseLink) {
+      window.location.href = courseLink;
+    } else {
+      alert('Curso no disponible');
+    }
+  };
 
   function showEditarPerfilForm() {
     hideAllForms();

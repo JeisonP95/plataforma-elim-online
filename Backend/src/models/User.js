@@ -19,6 +19,29 @@ const userSchema = new mongoose.Schema(
         course: { type: mongoose.Schema.Types.ObjectId, ref: "Course" }, // referencia al curso
         progress: { type: Number, default: 0 }, // % de progreso
         completed: { type: Boolean, default: false }, // estado
+        enrolledAt: { type: Date, default: Date.now }, // fecha de inscripción
+        lastAccessed: { type: Date, default: Date.now }, // última vez que accedió
+      }
+    ],
+
+    // 🔹 Progreso detallado de tareas por curso
+    courseProgress: [
+      {
+        courseId: { type: String, required: true }, // ID del curso (ej: "gestion-estres-adultos")
+        courseName: { type: String, required: true }, // Nombre del curso
+        tasks: [
+          {
+            taskId: { type: String, required: true }, // ID de la tarea
+            taskTitle: { type: String, required: true }, // Título de la tarea
+            completed: { type: Boolean, default: false }, // Si está completada
+            completedAt: { type: Date }, // Fecha de completado
+            score: { type: Number, default: 0 }, // Puntuación (opcional)
+          }
+        ],
+        totalTasks: { type: Number, default: 0 }, // Total de tareas del curso
+        completedTasks: { type: Number, default: 0 }, // Tareas completadas
+        progressPercentage: { type: Number, default: 0 }, // % de progreso
+        lastUpdated: { type: Date, default: Date.now }, // Última actualización
       }
     ]
   },

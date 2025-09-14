@@ -184,4 +184,145 @@ export const resetPassword = async (req, res) => {
   }
 };
 
+// Guardar progreso de tareas del usuario
+export const saveTaskProgress = async (req, res) => {
+  try {
+    const { courseId, courseName, tasks } = req.body;
+    const userId = req.user._id;
+
+    if (!courseId || !courseName || !Array.isArray(tasks)) {
+      return res.status(400).json({ message: "Se requieren courseId, courseName y tasks" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    // Buscar si ya existe progreso para este curso
+    let courseProgress = user.courseProgress.find(cp => cp.courseId === courseId);
+    
+    if (!courseProgress) {
+      // Crear nuevo progreso para el curso
+      courseProgress = {
+        courseId,
+        courseName,
+        tasks: [],
+        totalTasks: tasks.length,
+        completedTasks: 0,
+        progressPercentage: 0,
+        lastUpdated: new Date()
+      };
+      user.courseProgress.push(courseProgress);
+    }
+
+    // Actualizar tareas
+    tasks.forEach(taskData => {
+      const existingTask = courseProgress.tasks.find(t => t.taskId === taskData.taskId);
+      
+      if (existingTask) {
+        // Actualizar tarea existente
+        existingTask.completed = taskData.completed;
+        if (taskData.completed && !existingTask.completedAt) {
+          existingTask.completedAt = new Date();
+        }
+        if (taskData.score !== undefined) {
+          existingTask.score = taskData.score;
+        }
+      } else {
+        // Agregar nueva tarea
+        courseProgress.tasks.push({
+          taskId: taskData.taskId,
+          taskTitle: taskData.taskTitle,
+          completed: taskData.completed || false,
+          completedAt: taskData.completed ? new Date() : null,
+          score: taskData.score || 0
+        });
+      }
+    });
+
+    // Recalcular estadísticas
+    courseProgress.completedTasks = courseProgress.tasks.filter(t => t.completed).length;
+    courseProgress.totalTasks = courseProgress.tasks.length;
+    courseProgress.progressPercentage = courseProgress.totalTasks > 0 
+      ? Math.round((courseProgress.completedTasks / courseProgress.totalTasks) * 100)
+      : 0;
+    courseProgress.lastUpdated = new Date();
+
+    // Actualizar enrolledCourses si existe
+    const enrolledCourse = user.enrolledCourses.find(ec => ec.course.toString() === courseId);
+    if (enrolledCourse) {
+      enrolledCourse.progress = courseProgress.progressPercentage;
+      enrolledCourse.completed = courseProgress.progressPercentage === 100;
+      enrolledCourse.lastAccessed = new Date();
+    }
+
+    await user.save();
+
+    res.json({ 
+      message: "Progreso guardado exitosamente", 
+      progress: courseProgress 
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error del servidor", error: error.message });
+  }
+};
+
+// Obtener progreso del usuario
+export const getUserProgress = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId).select("courseProgress enrolledCourses");
+    
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({ 
+      courseProgress: user.courseProgress,
+      enrolledCourses: user.enrolledCourses
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error del servidor", error: error.message });
+  }
+};
+
+// Inscribir usuario en un curso
+export const enrollInCourse = async (req, res) => {
+  try {
+    const { courseId } = req.body;
+    const userId = req.user._id;
+
+    if (!courseId) {
+      return res.status(400).json({ message: "Se requiere el ID del curso" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    // Verificar si ya está inscrito
+    const alreadyEnrolled = user.enrolledCourses.some(ec => ec.course.toString() === courseId);
+    if (alreadyEnrolled) {
+      return res.status(409).json({ message: "Ya estás inscrito en este curso" });
+    }
+
+    // Agregar curso a enrolledCourses
+    user.enrolledCourses.push({
+      course: courseId,
+      progress: 0,
+      completed: false,
+      enrolledAt: new Date(),
+      lastAccessed: new Date()
+    });
+
+    await user.save();
+
+    res.json({ message: "Te has inscrito exitosamente en el curso" });
+  } catch (error) {
+    res.status(500).json({ message: "Error del servidor", error: error.message });
+  }
+};
+
 

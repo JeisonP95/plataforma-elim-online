@@ -358,3 +358,159 @@ footer a {
 footer a:hover {
     color: #a39bc2;
 }
+
+/* ========================================
+   13. SECCIÓN DE PROGRESO DE CURSOS
+   ======================================== */
+.course-progress-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    backdrop-filter: blur(10px);
+}
+
+.progress-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.progress-header h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.progress-summary {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.courses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.course-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.course-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.course-item.completed {
+    border-left: 4px solid #4CAF50;
+}
+
+.course-item.in-progress {
+    border-left: 4px solid #FF9800;
+}
+
+.course-info h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.course-progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.course-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.tasks-count {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.course-status {
+    color: #fff;
+    font-weight: bold;
+}
+
+.course-item.completed .course-status {
+    color: #4CAF50;
+}
+
+.course-item.in-progress .course-status {
+    color: #FF9800;
+}
+
+.course-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive para progreso de cursos */
+@media (max-width: 768px) {
+    .progress-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .course-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}

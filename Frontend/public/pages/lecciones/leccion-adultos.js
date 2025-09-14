@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     inicializarTareas();
     configurarEventListeners();
+    
+    // Cargar progreso del usuario desde el backend
+    await cargarProgresoUsuario();
+    
+    // Cargar progreso local como fallback
     cargarProgresoLocal();
     actualizarUI();
     
@@ -62,6 +67,74 @@ async function cargarDatosUsuario() {
         console.log("Datos del usuario cargados:", user);
     } catch (error) {
         console.error("Error cargando datos del usuario:", error);
+        // No mostrar alerta para no interrumpir la experiencia del usuario
+    }
+}
+
+// Función para cargar el progreso del usuario desde el backend
+async function cargarProgresoUsuario() {
+    const API_BASE = window.location.hostname.includes("localhost")
+        ? "http://localhost:3000"
+        : "https://plataforma-elim-online.onrender.com";
+    
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.warn("No hay token de autenticación");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/api/users/progress`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error("Error cargando progreso");
+        }
+
+        const { courseProgress } = await response.json();
+        
+        // Buscar progreso para este curso específico
+        const cursoProgreso = courseProgress.find(cp => cp.courseId === CURSO_SLUG);
+        
+        if (cursoProgreso) {
+            console.log("Progreso del curso cargado:", cursoProgreso);
+            
+            // Actualizar tareas con el progreso guardado
+            cursoProgreso.tasks.forEach(taskProgress => {
+                const tarea = tareasData.find(t => t.id === taskProgress.taskId);
+                if (tarea) {
+                    tarea.completada = taskProgress.completed;
+                    
+                    // Actualizar UI de la tarea
+                    const checkbox = tarea.elemento.querySelector('.checkbox-completada');
+                    if (checkbox) {
+                        checkbox.checked = taskProgress.completed;
+                    }
+                    
+                    // Actualizar estado visual
+                    actualizarEstadoTarea(tarea);
+                    
+                    if (taskProgress.completed) {
+                        tarea.elemento.classList.add('completada');
+                    }
+                }
+            });
+            
+            // Actualizar progreso general
+            actualizarProgreso();
+            actualizarContadorCompletadas();
+            
+            // Si todas las tareas están completadas, mostrar resumen
+            if (cursoProgreso.progressPercentage === 100) {
+                mostrarResumen();
+            }
+        }
+        
+    } catch (error) {
+        console.error("Error cargando progreso del usuario:", error);
         // No mostrar alerta para no interrumpir la experiencia del usuario
     }
 }
@@ -397,7 +470,7 @@ function cerrarModal() {
 }
 
 // Enviar tareas completadas al backend
-function enviarTareasCompletadas() {
+async function enviarTareasCompletadas() {
     const tareasCompletadas = tareasData.filter(t => t.completada);
     
     if (tareasCompletadas.length === 0) {
@@ -405,56 +478,59 @@ function enviarTareasCompletadas() {
         return;
     }
     
-    // TODO: Reemplazar por el nombre real del usuario logueado
-    const nombreUsuario = document.getElementById('nombre-estudiante').textContent;
+    const API_BASE = window.location.hostname.includes("localhost")
+        ? "http://localhost:3000"
+        : "https://plataforma-elim-online.onrender.com";
     
-    // Plantilla JSON para enviar al backend
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert('Debes iniciar sesión para guardar tu progreso');
+        return;
+    }
+    
+    // Preparar datos para enviar al backend
+    const tasksToSend = tareasData.map(tarea => ({
+        taskId: tarea.id,
+        taskTitle: tarea.titulo,
+        completed: tarea.completada,
+        score: tarea.completada ? 100 : 0 // Puntuación simple
+    }));
+    
     const datosEnvio = {
-        curso: CURSO_SLUG,
-        usuario: nombreUsuario,
-        tareasCompletadas: tareasCompletadas.map(t => t.id),
-        fecha: new Date().toISOString(),
-        progresoCompleto: (tareasCompletadas.length === tareasData.length)
+        courseId: CURSO_SLUG,
+        courseName: "Gestión del Estrés para Adultos",
+        tasks: tasksToSend
     };
     
-    console.log('Datos a enviar:', datosEnvio);
+    console.log('Enviando progreso al backend:', datosEnvio);
     
-    // TODO: Descomenta y modifica la siguiente línea cuando tengas el endpoint del backend
-    /*
-    fetch('/api/progreso', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${getAuthToken()}` // Si usas autenticación
-        },
-        body: JSON.stringify(datosEnvio)
-    })
-    .then(response => {
+    try {
+        const response = await fetch(`${API_BASE}/api/users/progress`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(datosEnvio)
+        });
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(errorData.message || `Error ${response.status}`);
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Tareas enviadas exitosamente:', data);
+        
+        const data = await response.json();
+        console.log('✅ Progreso guardado exitosamente:', data);
         mostrarMensajeExito();
         cerrarModal();
         
-        // Opcional: redirigir o limpiar estado local
-        // window.location.href = '/pages/cursos/curso-detalle.html';
-    })
-    .catch(error => {
-        console.error('Error al enviar tareas:', error);
-        alert('Hubo un error al enviar las tareas. Por favor, inténtalo de nuevo.');
-    });
-    */
-    
-    // Simulación para desarrollo (remover cuando tengas el backend)
-    setTimeout(() => {
-        console.log('✅ Simulación: Tareas enviadas exitosamente');
-        mostrarMensajeExito();
-        cerrarModal();
-    }, 1000);
+        // Actualizar la UI con el progreso guardado
+        await cargarProgresoUsuario();
+        
+    } catch (error) {
+        console.error('Error al enviar progreso:', error);
+        alert(`Error al guardar tu progreso: ${error.message}`);
+    }
 }
 
 // Mostrar mensaje de éxito después del envío

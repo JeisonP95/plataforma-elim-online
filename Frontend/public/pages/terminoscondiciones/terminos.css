@@ -1,73 +1,10 @@
 /*estilo para términos y condiciones*/
-
-/* ========================================
-   1. CONFIGURACIÓN GENERAL
-   ======================================== */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f6f6fa;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* ========================================
-   2. HEADER Y NAVEGACIÓN
-   ======================================== */
-header {
-    background: linear-gradient(90deg, #a39bc2 60%, #6c63a4 100%);
-    padding: 10px;
-}
-
-header h1 {
-    margin: 0;
-    padding: 2rem 0 0.5rem 0;
-    text-align: center;
-    color: #fff;
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-}
-
-nav {
+.header-terminos {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 15px;
+    flex-direction: column;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    color: #fff;
-    font-weight: 500;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: background 0.2s;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background: #fff;
-    color: #6c63a4;
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-/* ========================================
-   3. TÍTULOS Y ENCABEZADOS
-   ======================================== */
 .titulo-terminos {
     background: #c6c6f0;
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -122,25 +59,28 @@ h4 {
     line-height: 1.5;
 }
 
-/* ========================================
-   4. FOOTER
-   ======================================== */
-footer {
-    background: #6c63a4;
-    color: #fff;
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 1rem;
-    margin-top: 2rem;
-}
+@media (max-width: 768px) {
+    .header-terminos {
+        flex-direction: column;
+    }
 
-footer a {
-    color: #fff;
-    text-decoration: underline;
-    margin: 0 0.2rem;
-}
+    .titulo-terminos {
+        font-size: 22px;
+    }
 
-footer a:hover {
-    color: #a39bc2;
-}
+    .subtitulo {
+        font-size: 18px;
+    }
 
+    h1 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+}

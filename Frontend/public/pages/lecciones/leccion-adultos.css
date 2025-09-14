@@ -1,0 +1,554 @@
+/* Archivo: tareas-gestion-estres-adultos.css, Curso: Gestión del Estrés para Adultos, Generado para: Elim Online */
+
+/* Variables CSS para colores de Elim */
+:root {
+    --elim-primary: #6c63a4;
+    --elim-secondary: #a39bc2;
+    --elim-light: #f6f6fa;
+    --elim-accent: #e0def7;
+    --elim-dark: #483d8b;
+    --elim-success: #4CAF50;
+    --elim-warning: #FF9800;
+    --text-dark: #333;
+    --text-light: #666;
+    --white: #fff;
+    --shadow-light: rgba(108, 99, 164, 0.08);
+    --shadow-medium: rgba(108, 99, 164, 0.15);
+    --shadow-strong: rgba(108, 99, 164, 0.25);
+}
+
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--elim-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, var(--elim-secondary) 60%, var(--elim-primary) 100%);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px var(--shadow-light);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav figure {
+    margin: 0;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info {
+    color: var(--white);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Botones */
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+    min-height: 44px; /* Accesibilidad táctil */
+}
+
+.btn-primary {
+    background: var(--elim-primary);
+    color: var(--white);
+    box-shadow: 0 4px 12px var(--shadow-medium);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--elim-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow-strong);
+}
+
+.btn-primary:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--elim-primary);
+    border: 2px solid var(--elim-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--elim-accent);
+    transform: translateY(-2px);
+}
+
+/* Hero section */
+.hero-tareas {
+    background: linear-gradient(135deg, var(--white) 0%, var(--elim-accent) 100%);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px var(--shadow-light);
+    text-align: center;
+}
+
+.hero-tareas h1 {
+    color: var(--elim-primary);
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.estudiante-info {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.estudiante-info span {
+    color: var(--elim-primary);
+    font-weight: 600;
+}
+
+/* Barra de progreso */
+.progreso-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.progreso-info {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.barra-progreso {
+    width: 100%;
+    height: 8px;
+    background: rgba(108, 99, 164, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.barra-completada {
+    height: 100%;
+    background: linear-gradient(90deg, var(--elim-success), var(--elim-primary));
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+/* Container principal */
+.tareas-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.tareas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tareas-header h2 {
+    color: var(--elim-primary);
+    font-size: 1.8rem;
+}
+
+.acciones-globales {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Lista de tareas */
+.tareas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tarea {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 2px 16px var(--shadow-light);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.tarea:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px var(--shadow-medium);
+}
+
+.tarea.completada {
+    border-left-color: var(--elim-success);
+    background: linear-gradient(135deg, var(--white) 0%, rgba(76, 175, 80, 0.02) 100%);
+}
+
+.tarea-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tarea-numero {
+    background: var(--elim-primary);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.tarea.completada .tarea-numero {
+    background: var(--elim-success);
+}
+
+.tarea-info {
+    flex: 1;
+}
+
+.tarea-info h3 {
+    color: var(--elim-primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tarea-info p {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.tarea-estado {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.checkbox-completada {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--elim-primary);
+}
+
+.estado-texto {
+    font-weight: 600;
+    color: var(--elim-warning);
+    font-size: 0.9rem;
+}
+
+.tarea.completada .estado-texto {
+    color: var(--elim-success);
+}
+
+.tarea-acciones {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--elim-light);
+}
+
+.btn-siguiente {
+    background: var(--elim-secondary);
+    color: var(--white);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-siguiente:hover:not(:disabled) {
+    background: var(--elim-primary);
+    transform: translateY(-2px);
+}
+
+.btn-siguiente:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Video container */
+.video-container {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.video-container iframe {
+    width: 100%;
+    min-height: 280px;
+    border: none;
+}
+
+.video-fallback {
+    background: var(--elim-light);
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.checkmark {
+    position: relative;
+}
+
+/* Resumen de tareas */
+.resumen-tareas {
+    background: linear-gradient(135deg, var(--elim-success), var(--elim-primary));
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0 4px 20px var(--shadow-medium);
+}
+
+.resumen-tareas h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.resumen-stats {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+.sin-tareas {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--elim-light);
+}
+
+.modal-header h3 {
+    color: var(--elim-primary);
+    margin: 0;
+}
+
+.modal-close {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--text-dark);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.modal-body li {
+    margin: 0.5rem 0;
+    color: var(--text-light);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--elim-light);
+}
+
+/* Footer */
+footer {
+    background: var(--elim-primary);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.tarea {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.tarea.completada {
+    animation: slideInRight 0.4s ease forwards;
+}
+
+/* Media queries responsive */
+@media (max-width: 768px) {
+    .hero-tareas {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .hero-tareas h1 {
+        font-size: 1.8rem;
+    }
+    
+    .tareas-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tareas-header h2 {
+        text-align: center;
+    }
+    
+    .acciones-globales {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .tarea-header {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .tarea-estado {
+        justify-content: center;
+    }
+    
+    .tarea-acciones {
+        justify-content: center;
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .user-info {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .video-container iframe {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tarea {
+        padding: 1rem;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        margin: 0.5rem;
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 1rem;
+    }
+}

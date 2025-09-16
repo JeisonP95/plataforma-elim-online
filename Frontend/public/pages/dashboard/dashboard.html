@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="nav">
-            <span class="user-welcome user-name">¡Usuario!</span>
+            <span class="user-welcome user-name">Usuario</span>
             <div class="logo">
                 <img src="/images/logo-removebg-preview.png" alt="Logo de Elim Online" class="logo-elim"
                     loading="lazy">
@@ -21,7 +21,8 @@
             <div class="user-dropdown">
                 <button class="dropdown-btn btn-secondary">≡</button>
                 <div class="dropdown-content">
-                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi Perfil</a>
+                    <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil">Mi
+                        Perfil</a>
                     <a href="/index.html" onclick="localStorage.removeItem('token')">Cerrar Sesión</a>
                 </div>
             </div>
@@ -50,7 +51,7 @@
             </div>
         </section>
         <!-- Mis Cursos Inscritos -->
-        <section id="mis-cursos" class="dashboard-section">
+        <section id="mis-cursos" class="dashboard-section-cursos">
             <h2>Mis Cursos</h2>
             <div class="cursos-lista" id="my-courses-list">
                 <div class="no-courses-message">
@@ -74,14 +75,15 @@
             <div class="perfil-container">
                 <div class="perfil-card">
                     <div class="perfil-avatar">
-                        <img src="https://via.placeholder.com/100x100/6c63a4/FFFFFF?text=M" alt="Avatar de María"
-                            width="100" height="100">
+                        <img src="/images/fotoperfil-profesor.jpg" alt="Avatar de María" width="100"
+                            height="100">
                     </div>
                     <div class="perfil-info">
                         <h3 class="profile-name">Usuario</h3>
                         <p class="profile-email">📧 email@ejemplo.com</p>
                         <p class="profile-date">📅 Miembro desde: 2025</p>
                     </div>
+
                     <div class="perfil-stats">
                         <div class="stat-item">
                             <strong>Cursos Completados:</strong> <span class="completed-courses">0</span>
@@ -96,7 +98,8 @@
                     <div class="perfil-actions">
                         <a href="/pages/perfil-configuracion/perfil-configuracion.html?mode=perfil"
                             class="btn-primary">Editar Perfil</a>
-                        <a href="/pages/password/password.html?mode=change" class="btn-secondary">Cambiar Contraseña</a>
+                        <a href="/pages/password/password.html?mode=change" class="btn-secondary">Cambiar
+                            Contraseña</a>
                     </div>
                 </div>
             </div>
@@ -134,7 +137,7 @@
 </body>
 <footer>
     <p>&copy; 2025 Elim Online. Todos los derechos reservados.</p>
-    <p>Contacto: info@elimonline.com | Tel: +34 912 345 678</p>
+    <p>Contacto: info@elimonline.com | Tel: 312 345 1678</p>
     <p>
         Síguenos en
         <a href="https://facebook.com" target="_blank">Facebook</a> |

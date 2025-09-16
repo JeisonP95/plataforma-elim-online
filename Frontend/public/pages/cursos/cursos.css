@@ -1,0 +1,219 @@
+.cursodetalle-hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f6f6fa 0%, #e0def7 100%);
+  margin: 0 auto;
+  max-width: 1100px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+.cursodetalle-hero h1 {
+  color: #6c63a4;
+  margin-bottom: 0;
+  font-size: 2.2rem;
+}
+
+.cursodetalle-hero p {
+  color: #333;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+}
+
+.cursodetalle-hero img {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  max-width: 1000px;
+  border-radius: 12px;
+}
+
+.curso-contenido {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+  max-width: 1100px;
+  padding: 2rem 1rem;
+  background-color: #d8d0f0;
+  border-radius: 12px;
+}
+
+.contenido-navegacion {
+  text-align: justify;
+  padding: 2rem 1rem;
+  background-color: #d8d0f0;
+  margin: 0 auto;
+  max-width: 1100px;
+  border-radius: 12px;
+}
+
+.btn-comprar {
+  display: inline-block;
+  background: #6c63a4;
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin: 1rem 0 1.5rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(108, 99, 164, 0.3);
+}
+
+.btn-comprar:hover {
+  background: #564c94;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(108, 99, 164, 0.4);
+}
+
+.compra-info {
+  background: #f9f9fc;
+  padding: 1.2rem;
+  border-radius: 8px;
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  border-left: 4px solid #6c63a4;
+}
+
+/*MEDIA QUERIES RESPONSIVE*/
+@media (max-width: 768px) {
+  .cursodetalle-hero {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .cursodetalle-hero h1 {
+    font-size: 1.5rem;
+  }
+  .cursodetalle-hero p {
+    font-size: 0.9rem;
+  }
+
+  .curso-imagenPortada {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .detalles-numericos {
+    gap: 0.8rem;
+  }
+
+  .detalle-item {
+    padding: 0.8rem 0.6rem;
+    min-width: 90px;
+    max-width: 110px;
+  }
+
+  .detalle-item h3 {
+    font-size: 1rem;
+  }
+
+  .detalle-item p {
+    font-size: 0.75rem;
+  }
+  .contenido-navegacion {
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .curso-contenido {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .instructor-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contenido-seccion {
+    padding: 1rem;
+    scroll-margin-top: 120px;
+  }
+
+  .instructor-imagen {
+    margin: 0 auto;
+  }
+
+  .nav-link {
+    padding: 0.6rem 1rem;
+  }
+
+  .curso-compra {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .compra-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .compra-detalles {
+    width: 100%;
+  }
+
+  .compra-detalles li {
+    font-size: 0.9rem;
+  }
+
+  .compra-detalles strong {
+    min-width: 100px;
+  }
+
+  .btn-comprar {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+
+  .compra-info {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detalles-numericos {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detalle-item {
+    max-width: 200px;
+    width: 100%;
+  }
+}
+
+/* Header nav responsive buttons - estilo profesional */
+@media (max-width: 600px) {
+  header nav {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-buttons a {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    text-align: center;
+    font-size: 1rem;
+    padding: 12px 0;
+    margin: 0;
+    border-radius: 8px;
+  }
+}

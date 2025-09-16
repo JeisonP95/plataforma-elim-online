@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("✅ Inicio de sesión exitoso, redirigiendo...");
       // Guardar token en localStorage (para futuras peticiones)
       localStorage.setItem("token", result.token);
+      localStorage.setItem("user", JSON.stringify(result.user));
       // Redirigir al dashboard
       window.location.href = "/pages/dashboard/dashboard.html";
     } catch (err) {

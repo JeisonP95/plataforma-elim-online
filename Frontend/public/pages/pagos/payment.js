@@ -1,119 +1,130 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE = window.location.hostname.includes("localhost")
-    ? "http://localhost:3000"
-    : "https://plataforma-elim-online.onrender.com";
-
-  // Obtener courseId desde la URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const courseId = urlParams.get("courseId");
-  
-  // Verificar autenticación
+document.addEventListener("DOMContentLoaded", () => {
+  // obtener courseId desde la URL (ej: ?id=...)
+  const params = new URLSearchParams(window.location.search);
+  const courseId = params.get("id") || "68c1bb981e47576990d91728"; // fallback si no hay id
+  const from = params.get("from"); // "landing" | "dashboard" | null
+  // obtener token/usuario desde localStorage (ajusta la key si usas otra)
   const token = localStorage.getItem("token");
-  if (!token) {
-    alert("Debes iniciar sesión para adquirir un curso");
-    window.location.href = "/pages/login/login1.html";
-    return;
+  // opcional: userId desde sesión (si la guardas)
+  const userId = localStorage.getItem("userId") || "68c19eb5ae77b4db53cb8b80";
+
+  const backLink = document.querySelector("a.btn-secondary");
+  if (backLink) {
+    if (from === "dashboard") {
+      backLink.href = "/pages/dashboard/dashboard.html";
+      backLink.textContent = "Volver al Dashboard";
+    } else if (from === "landing") {
+      backLink.href = "/index.html"; // ajusta si tu landing está en otra ruta
+      backLink.textContent = "Volver";
+    } else {
+      // fallback: si viene logueado ir a dashboard, si no ir a login
+      if (token) {
+        backLink.href = "/src/pages/dashboard/dashboard.html";
+        backLink.textContent = "Volver al Dashboard";
+      } else {
+        backLink.href = "/src/pages/login/login1.html";
+        backLink.textContent = "Volver ";
+      }
+    }
   }
 
-  if (!courseId) {
-    alert("ID de curso no válido");
-    window.location.href = "/index.html";
-    return;
-  }
-
-  // Cargar información del curso
-  await loadCourseInfo(courseId);
+  // rellenar info del curso desde la API si está disponible
+  const API_BASE =
+  window.location.hostname.includes("localhost")
+    ? "http://localhost:3000" // cuando pruebas en local
+    : "https://plataforma-elim-online.onrender.com"; // cuando está en producción
+  (async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/courses/${courseId}`);
+      if (!res.ok) return;
+      const course = await res.json();
+      document.getElementById("courseImage").src = course.image || "";
+      document.getElementById("courseTitle").innerText =
+        course.title || "Título del curso";
+      document.getElementById("courseDescription").innerText =
+        course.description || "";
+      document.getElementById("coursePrice").innerText = course.price
+        ? `$${course.price}`
+        : "$0";
+    } catch (err) {
+      console.error("No se pudo cargar curso:", err);
+    }
+  })();
 
   const form = document.getElementById("paymentForm");
   const message = document.getElementById("message");
 
+  // al enviar pago, si no hay token redirigir a login con next hacia esta misma payment page
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Validar datos del formulario
-    const cardNumber = document.getElementById("cardNumber").value;
-    const cardName = document.getElementById("cardName").value;
-    const expiry = document.getElementById("expiry").value;
-    const cvv = document.getElementById("cvv").value;
-
-    if (!cardNumber || !cardName || !expiry || !cvv) {
-      message.innerText = "❌ Por favor completa todos los campos";
-      message.className = "error";
+    if (!token) {
+      const returnUrl = encodeURIComponent(
+        window.location.pathname + window.location.search
+      );
+      window.location.href = `/pages/login/login1.html?next=${returnUrl}`;
       return;
     }
 
-    // Simular validación de tarjeta
-    if (cardNumber.length < 16) {
-      message.innerText = "❌ Número de tarjeta inválido";
-      message.className = "error";
-      return;
-    }
-
+    // Aquí simulamos un pago exitoso (cuando el usuario está logueado)
     message.innerText = "Procesando pago...";
-    message.className = "info";
 
-    try {
-      // Llamar a la API de inscripción
-      const response = await fetch(`${API_BASE}/api/enroll`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          courseId,
-          paymentData: {
-            cardNumber,
-            cardName,
-            expiry,
-            cvv
+    setTimeout(async () => {
+      try {
+        // 1️Registrar pago
+        const paymentRes = await fetch(`${API_BASE}/api/payments`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId,
+            courseId,
+            amount: 100,
+            transactionId: "SIMULATED123",
+          }),
+        });
+
+        const paymentData = await paymentRes.json();
+        if (!paymentRes.ok)
+          throw new Error(paymentData.error || "Error registrando pago");
+
+        // 2️⃣ Obtener inscripción del usuario en el curso
+        const userCourseRes = await fetch(
+          `${API_BASE}/api/user-courses/${userId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
           }
-        })
-      });
+        );
+        const { courses } = await userCourseRes.json();
+        const userCourse = courses.find((c) => c.courseId._id === courseId);
 
-      const result = await response.json();
+        if (!userCourse)
+          throw new Error("No se pudo encontrar la inscripción del curso");
 
-      if (!response.ok) {
-        throw new Error(result.message || "Error al procesar el pago");
+        message.innerText = "✅ Pago exitoso. ¡Ya estás inscrito en el curso!";
+
+        // 3️⃣ Redirigir a la primera lección del curso
+        setTimeout(() => {
+          const firstLessonId = 1;
+
+          // Mapeo de courseId a páginas HTML
+          const lessonPages = {
+            "68c74f37152680f9c1afc208": "leccion-naturaleza.html",
+            "68c74fcb152680f9c1afc20d": "leccion-yoga.html",
+            "68c75050152680f9c1afc211": "leccion-ninos.html",
+            "68c7520b152680f9c1afc222": "leccion-adultos.html",
+          };
+
+          const lessonPage = lessonPages[courseId] || "leccion-adultos.html"; // fallback
+
+          window.location.href = `/pages/lecciones/${lessonPage}?courseId=${courseId}&lessonId=${firstLessonId}`;
+        }, 1200);
+      } catch (error) {
+        console.error(error);
+        message.innerText = "❌ Error al procesar el pago.";
       }
-
-      message.innerText = "✅ Pago exitoso. ¡Ya estás inscrito en el curso!";
-      message.className = "success";
-
-      // Redirigir al dashboard después de 2 segundos
-      setTimeout(() => {
-        window.location.href = "/pages/dashboard/dashboard.html";
-      }, 2000);
-
-    } catch (error) {
-      console.error("Error en el pago:", error);
-      message.innerText = `❌ Error: ${error.message}`;
-      message.className = "error";
-    }
+    }, 2000);
   });
-
-  // Función para cargar información del curso
-  async function loadCourseInfo(courseId) {
-    try {
-      const response = await fetch(`${API_BASE}/api/courses/${courseId}`);
-      
-      if (!response.ok) {
-        throw new Error("Error al cargar información del curso");
-      }
-
-      const course = await response.json();
-      
-      // Actualizar la UI con la información del curso
-      document.getElementById("courseImage").src = course.image || "/images/imagenPortada-curso.jpg";
-      document.getElementById("courseImage").alt = course.title;
-      document.getElementById("courseTitle").textContent = course.title;
-      document.getElementById("courseDescription").textContent = course.description;
-      document.getElementById("coursePrice").textContent = `$${course.price || 0} ${course.currency || 'USD'}`;
-
-    } catch (error) {
-      console.error("Error cargando curso:", error);
-      message.innerText = "❌ Error al cargar información del curso";
-      message.className = "error";
-    }
-  }
 });

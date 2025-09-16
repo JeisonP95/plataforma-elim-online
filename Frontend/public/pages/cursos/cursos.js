@@ -15,6 +15,15 @@ async function loadCourseDetail() {
 
   try {
     const res = await fetch(`${API_BASE}/api/courses/${courseId}`);
+    if (res.status === 404) {
+      document.getElementById("curso-detalle").innerHTML = `
+        <p>❌ Curso no encontrado en el servidor.</p>
+        <p>
+          <a class="btn-primary" href="/cursos">Volver a cursos</a>
+        </p>
+      `;
+      return;
+    }
     if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
 
     const course = await res.json();

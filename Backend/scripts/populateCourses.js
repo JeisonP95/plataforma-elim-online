@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import Course from "../src/models/Course.js";
+import Instructor from "../src/models/Instructor.js";
+import Review from "../src/models/Review.js";
 
 dotenv.config();
 
@@ -15,6 +17,34 @@ const connectDB = async () => {
   }
 };
 
+// Instructores de ejemplo
+const sampleInstructors = [
+  {
+    name: "María López",
+    title: "Psicóloga Clínica",
+    bio: "Especialista en manejo del estrés y mindfulness.",
+    image: "/images/mariaperfil.jpeg",
+  },
+  {
+    name: "Carlos Ruiz",
+    title: "Guía de actividades al aire libre",
+    bio: "Facilitador de prácticas de conexión con la naturaleza.",
+    image: "/images/carlos.png",
+  },
+  {
+    name: "Andrea Silva",
+    title: "Psicóloga Infantil",
+    bio: "Apasionada por el bienestar emocional de la niñez.",
+    image: "/images/andrea.png",
+  },
+  {
+    name: "Juan Pérez",
+    title: "Instructor de Yoga",
+    bio: "10+ años enseñando yoga para todas las edades.",
+    image: "/images/juan.png",
+  },
+];
+
 // Cursos de ejemplo (ajustados al schema de Course.js)
 const sampleCourses = [
   {
@@ -26,7 +56,7 @@ const sampleCourses = [
     rating: 5,
     image: "/images/curso-adultos-estres.jpeg",
     price: "49.99 USD",
-    instructorId: null,
+    instructorId: null, // se setea al insertar instructores
     lessonPage: "leccion-adultos.html",
   },
   {
@@ -70,13 +100,38 @@ const sampleCourses = [
 // Función para poblar la base de datos
 const populateCourses = async () => {
   try {
-    // Limpiar cursos existentes
+    // Limpiar colecciones
+    await Review.deleteMany({});
     await Course.deleteMany({});
+    await Instructor.deleteMany({});
     console.log("🗑️ Cursos existentes eliminados");
 
+    // Insertar instructores y asociarlos a cursos
+    const createdInstructors = await Instructor.insertMany(sampleInstructors);
+    const coursesToInsert = sampleCourses.map((c, idx) => ({
+      ...c,
+      instructorId: createdInstructors[idx % createdInstructors.length]._id,
+    }));
+
     // Insertar cursos de ejemplo
-    const createdCourses = await Course.insertMany(sampleCourses);
+    const createdCourses = await Course.insertMany(coursesToInsert);
     console.log(`✅ ${createdCourses.length} cursos creados exitosamente`);
+
+    // Crear reseñas básicas por curso
+    const sampleComments = [
+      "Muy útil y práctico.",
+      "Me encantó la estructura del curso.",
+      "Contenidos claros y bien explicados.",
+    ];
+    const reviewsToInsert = createdCourses.flatMap((course, i) =>
+      sampleComments.map((comment, j) => ({
+        courseId: course._id,
+        userId: null,
+        comment,
+        rating: 5 - (j % 2),
+      }))
+    );
+    await Review.insertMany(reviewsToInsert);
 
     // Mostrar los cursos creados
     createdCourses.forEach((course) => {

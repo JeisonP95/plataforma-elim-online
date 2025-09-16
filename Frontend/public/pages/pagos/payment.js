@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // obtener courseId desde la URL (ej: ?id=...)
   const params = new URLSearchParams(window.location.search);
-  const courseId = params.get("id") || "68c1bb981e47576990d91728"; // fallback si no hay id
+  const courseId = params.get("id");
   const from = params.get("from"); // "landing" | "dashboard" | null
   // obtener token/usuario desde localStorage (ajusta la key si usas otra)
   const token = localStorage.getItem("token");
@@ -43,9 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         course.title || "Título del curso";
       document.getElementById("courseDescription").innerText =
         course.description || "";
-      document.getElementById("coursePrice").innerText = course.price
-        ? `$${course.price}`
-        : "$0";
+      document.getElementById("coursePrice").innerText = course.price || "";
     } catch (err) {
       console.error("No se pudo cargar curso:", err);
     }
@@ -106,20 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message.innerText = "✅ Pago exitoso. ¡Ya estás inscrito en el curso!";
 
         // 3️⃣ Redirigir a la primera lección del curso
-        setTimeout(() => {
-          const firstLessonId = 1;
-
-          // Mapeo de courseId a páginas HTML
-          const lessonPages = {
-            "68c74f37152680f9c1afc208": "leccion-naturaleza.html",
-            "68c74fcb152680f9c1afc20d": "leccion-yoga.html",
-            "68c75050152680f9c1afc211": "leccion-ninos.html",
-            "68c7520b152680f9c1afc222": "leccion-adultos.html",
-          };
-
-          const lessonPage = lessonPages[courseId] || "leccion-adultos.html"; // fallback
-
-          window.location.href = `/pages/lecciones/${lessonPage}?courseId=${courseId}&lessonId=${firstLessonId}`;
+        setTimeout(async () => {
+          try {
+            // leer course para conocer su lessonPage
+            const courseRes = await fetch(`${API_BASE}/api/courses/${courseId}`);
+            const course = courseRes.ok ? await courseRes.json() : null;
+            const lessonPage = course?.lessonPage || "leccion-adultos.html";
+            const firstLessonId = 1;
+            window.location.href = `/pages/lecciones/${lessonPage}?courseId=${courseId}&lessonId=${firstLessonId}`;
+          } catch (_) {
+            window.location.href = `/pages/lecciones/leccion-adultos.html?courseId=${courseId}&lessonId=1`;
+          }
         }, 1200);
       } catch (error) {
         console.error(error);

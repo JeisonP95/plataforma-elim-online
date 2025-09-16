@@ -1,18 +1,19 @@
 {
   "rewrites": [
+    { "source": "/", "destination": "/index.html" },
     { "source": "/login", "destination": "/pages/login/login1.html" },
     { "source": "/register", "destination": "/pages/register/register.html" },
     { "source": "/password", "destination": "/pages/password/password.html" },
     { "source": "/perfil-configuracion", "destination": "/pages/perfil-configuracion/perfil-configuracion.html" },
     { "source": "/terminoscondiciones", "destination": "/pages/terminoscondiciones/terminos.html" },
-    { "source": "/cursos", "destination": "/pages/cursos/curso-detalle.html" },
+    { "source": "/cursos", "destination": "/pages/cursos/cursos.html" },
+    { "source": "/cursosdash", "destination": "/pages/cursos/cursosdash.html" },
     { "source": "/dashboard", "destination": "/pages/dashboard/dashboard.html" },
     { "source": "/pagos", "destination": "/pages/pagos/payment.html" },
-    { "source": "/curso-adultos", "destination": "/pages/cursos/curso-adultos.html" },
-    { "source": "/curso-naturaleza", "destination": "/pages/cursos/curso-naturaleza.html" },
-    { "source": "/curso-ninos", "destination": "/pages/cursos/curso-ninos.html" },
-    { "source": "/curso-yoga", "destination": "/pages/cursos/curso-yoga.html" },
-    { "source": "/leccion-adultos", "destination": "/pages/lecciones/leccion-adultos.html" }
+    { "source": "/leccion-adultos", "destination": "/pages/lecciones/leccion-adultos.html" },
+    { "source": "/leccion-naturaleza", "destination": "/pages/lecciones/leccion-naturaleza.html" },
+    { "source": "/leccion-ninos", "destination": "/pages/lecciones/leccion-ninos.html" },
+    { "source": "/leccion-yoga", "destination": "/pages/lecciones/leccion-yoga.html" }
   ],
   "headers": [
     {

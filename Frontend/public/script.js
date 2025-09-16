@@ -36,6 +36,16 @@ async function loadAvailableCourses() {
         <button class="btn-primary" onclick="viewCourse('${course._id || course.id}')">Ver Curso</button>
       </article>
     `).join('');
+
+    // Cachear cursos por id para fallback en página de detalle
+    try {
+      courses.forEach((course) => {
+        const key = `course:${course._id || course.id}`;
+        sessionStorage.setItem(key, JSON.stringify(course));
+      });
+    } catch (_) {
+      // ignorar errores de storage (modo incógnito, etc.)
+    }
     
   } catch (err) {
     console.error("Error cargando cursos:", err);

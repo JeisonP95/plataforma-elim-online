@@ -16,6 +16,12 @@ async function loadCourseDetail() {
   try {
     const res = await fetch(`${API_BASE}/api/courses/${courseId}`);
     if (res.status === 404) {
+      const cached = sessionStorage.getItem(`course:${courseId}`);
+      if (cached) {
+        const course = JSON.parse(cached);
+        renderCourse(course);
+        return;
+      }
       document.getElementById("curso-detalle").innerHTML = `
         <p>❌ Curso no encontrado en el servidor.</p>
         <p>
@@ -28,9 +34,21 @@ async function loadCourseDetail() {
 
     const course = await res.json();
     console.log("📘 Curso recibido:", course);
+    renderCourse(course);
+    attachBuyListener(course);
+  } catch (err) {
+    console.error("Error cargando curso:", err);
+    document.getElementById(
+      "curso-detalle"
+    ).innerHTML = `<p>❌ Error cargando curso: ${err.message}</p>`;
+  }
+}
 
-    const detail = document.getElementById("curso-detalle");
-    detail.innerHTML = `
+document.addEventListener("DOMContentLoaded", loadCourseDetail);
+
+function renderCourse(course) {
+  const detail = document.getElementById("curso-detalle");
+  detail.innerHTML = `
       <section class="cursodetalle-hero">
         <h1>${course.title}</h1>
         <p>${course.description}</p>
@@ -45,7 +63,7 @@ async function loadCourseDetail() {
           <h2>Adquiere este curso</h2>
           <p><strong>Precio:</strong> ${course.price}</p>
           <button id="btn-comprar" class="btn-primary" data-id="${
-            course._id
+            course._id || course.id
           }">Comprar</button>
         </aside>
       </section>
@@ -91,35 +109,24 @@ async function loadCourseDetail() {
         }
       </section>
     `;
-
-    // agregar listener al botón generado dinámicamente
-    const buyBtn = document.getElementById("btn-comprar");
-    if (buyBtn) {
-      buyBtn.addEventListener("click", () => {
-        const id = buyBtn.dataset.id || course._id;
-        const token = localStorage.getItem("token");
-        // detectar origen (si vino desde dashboard por referrer)
-        const ref = document.referrer || "";
-        const origin = ref.includes("dashboard") ? "dashboard" : "landing";
-        const paymentUrl = `/pages/pagos/payment.html?id=${id}&from=${origin}`;
-
-        if (!token) {
-          // mandar al login y luego al payment (preservar destino)
-          const next = encodeURIComponent(paymentUrl);
-          window.location.href = `/pages/login/login1.html?next=${next}`;
-          return;
-        }
-
-        // user logueado -> ir directo a payment
-        window.location.href = paymentUrl;
-      });
-    }
-  } catch (err) {
-    console.error("Error cargando curso:", err);
-    document.getElementById(
-      "curso-detalle"
-    ).innerHTML = `<p>❌ Error cargando curso: ${err.message}</p>`;
-  }
 }
 
-document.addEventListener("DOMContentLoaded", loadCourseDetail);
+function attachBuyListener(course) {
+  const buyBtn = document.getElementById("btn-comprar");
+  if (buyBtn) {
+    buyBtn.addEventListener("click", () => {
+      const id = buyBtn.dataset.id || course._id || course.id;
+      const token = localStorage.getItem("token");
+      const ref = document.referrer || "";
+      const origin = ref.includes("dashboard") ? "dashboard" : "landing";
+      const paymentUrl = `/pages/pagos/payment.html?id=${id}&from=${origin}`;
+
+      if (!token) {
+        const next = encodeURIComponent(paymentUrl);
+        window.location.href = `/pages/login/login1.html?next=${next}`;
+        return;
+      }
+      window.location.href = paymentUrl;
+    });
+  }
+}

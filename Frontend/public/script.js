@@ -33,7 +33,7 @@ async function loadAvailableCourses() {
           <li>${course.duration}</li>
           <li>${course.lessons} lecciones</li>
         </ul>
-        <button class="btn-primary" onclick="viewCourse('${course._id}')">Ver Curso</button>
+        <button class="btn-primary" onclick="viewCourse('${course.id}')">Ver Curso</button>
       </article>
     `).join('');
     
